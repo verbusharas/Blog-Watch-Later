@@ -2,14 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Posts</title>
 </head>
 <body>
 
-<div>
-    <h4 th:text="'Antiška'"></h4>
-    <p th:text="'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur purus ut faucibus pulvinar elementum integer. Adipiscing bibendum est ultricies integer quis auctor elit. Purus gravida quis blandit turpis cursus in. Sed risus ultricies tristique nulla aliquet enim tortor. Sed arcu non odio euismod. Nam libero justo laoreet sit amet cursus sit amet. In pellentesque massa placerat duis. Dictum fusce ut placerat orci nulla pellentesque dignissim enim sit. Sed felis eget velit aliquet sagittis id consectetur. Elit duis tristique sollicitudin nibh. Lorem ipsum dolor sit amet consectetur adipiscing elit. Nunc mattis enim ut tellus. Elit ut aliquam purus sit. Pulvinar mattis nunc sed blandit libero volutpat sed cras ornare. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Massa tempor nec feugiat nisl pretium fusce id velit. Eget egestas purus viverra accumsan. Faucibus a pellentesque sit amet porttitor. Eget aliquet nibh praesent tristique magna sit amet.'"></p>
+<div class="container">
+    <h1 th:text="'Welcome. This is a BLOG'">Welcome. This is a BLOG</h1>
+    <th:block th:if="${posts.isEmpty()}">
+        <p th:text="'Įrašų nėra'">Įrašų nėra</p>
+    </th:block>
+    <th:block th:if="${not posts.isEmpty()}">
+        <div th:each="post: ${posts}">
+            <h4 th:text="${post.title}"></h4>
+            <p th:text="${post.body}"></p>
+        </div>
+    </th:block>
 </div>
+
+
+
 
 
 </body>
