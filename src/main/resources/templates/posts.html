@@ -14,10 +14,15 @@
         <p th:text="'Įrašų nėra'">Įrašų nėra</p>
     </th:block>
     <th:block th:if="${not posts.isEmpty()}">
-        <div th:each="post: ${posts}">
-            <h4 th:text="${post.title}"></h4>
-            <p th:text="${post.body}"></p>
+
+        <div class="card bg-light mb-3" style="max-width: 18rem;" th:each="post: ${posts}">
+            <div class="card-header" th:text="${post.creationTimeStamp}">Time of posting</div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${post.title}">Title</h5>
+                <p class="card-text" th:text="${post.body}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
         </div>
+
     </th:block>
 </div>
 
