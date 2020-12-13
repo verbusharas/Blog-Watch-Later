@@ -4,6 +4,7 @@ import lt.verbus.svblog.model.Post;
 import lt.verbus.svblog.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
