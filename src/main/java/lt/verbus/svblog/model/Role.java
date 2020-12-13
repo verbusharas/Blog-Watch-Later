@@ -2,38 +2,33 @@ package lt.verbus.svblog.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-public class User {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-
-    private String password;
-
-    private String nickname;
-
-    @Column(name="avatar_url")
-    private String avatarUrl;
-
-    @ManyToOne
-    private Role role;
+    @Column(name="role_name")
+    private String roleName;
 
     @OneToMany
-    private List<Comment> comments;
+    private List<User> users;
 
+    @Override
+    public String getAuthority() {
+        return "ROLE_" + roleName;
+    }
 }
