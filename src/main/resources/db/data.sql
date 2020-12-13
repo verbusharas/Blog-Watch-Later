@@ -19,3 +19,97 @@ VALUES (1, 'Whisper', 'App',
         'http://www.sandraandwoo.com/comics/2016-01-04-0749-dating-strategy.png',
         '2020-12-14 18:47',
         '2020-12-14 18:47');
+
+
+INSERT INTO role (id, role_name)
+VALUES (1, 'ADMIN'),
+       (2, 'USER');
+
+INSERT INTO user (id, username, password, nickname, avatar_url, role_id)
+VALUES (1, 'admin', 'adminas', 'ADMIN',
+        'https://cdn.pixabay.com/photo/2016/10/31/00/31/settings-1784649_960_720.png', 1),
+       (2, 'jonas', 'jonas', 'Vingiu Jonas',
+        'https://ih1.redbubble.net/image.233704944.3693/flat,750x1000,075,f.u3.jpg', 2),
+       (3, 'bite', 'bite', 'Bitė Vilimaitė',
+        'https://i.pinimg.com/236x/6e/44/4d/6e444dc57ec98ffbaabd288f40f00eae--kiss-art-a-kiss.jpg', 2),
+       (4, 'thug', 'thug', 'Finansinis Nusikaltėlis',
+        'https://assets.awwwards.com/awards/images/2013/06/secret-life-heroes%20(44).jpg', 2);
+
+
+INSERT INTO role_users (role_id, users_id)
+VALUES (1, 1),
+       (2, 2),
+       (2, 3),
+       (2, 4);
+
+
+
+INSERT INTO comment (id, post_id, user_id, body, creation_time_stamp, update_time_stamp)
+VALUES (1, 1, 2,
+        'I see you have something to talk about. Well, I have something to shout about. Infact something to sing about. But I''ll just keep quiet and let you carry on.',
+        '2020-12-10 10:20',
+        '2020-12-10 10:20'),
+       (2, 1, 3,
+        'I like to wax my legs and stick the hair on my back. Why? Because it keeps my back warm. There''s method in my madness.',
+        '2020-12-10 10:33',
+        '2020-12-10 10:33'),
+       (3, 1, 2,
+        'If you really wanted to do that, then why wouldn''t you do that? Instead you do this. It makes no sense.',
+        '2020-12-10 10:35',
+        '2020-12-10 10:35'),
+        (4, 1, 4,
+        'Look! In the sky. It''s a bird, it''s a plane. Or is it a hellicopter? No actually I think it is a bird. Or maybe I''m just seeing things. Who knows... After 10 shots of Whiskey things start to get a bit strange.',
+        '2020-12-10 16:01',
+        '2020-12-10 16:01'),
+        (5, 2, 4,
+        'If I roll once and you roll twice. What does that mean?',
+        '2020-12-11 15:27',
+        '2020-12-10 15:27'),
+        (6, 2, 1,
+        'Please keep your comments clean and concentrate on the topic.',
+        '2020-12-11 15:30',
+        '2020-12-10 15:30'),
+        (7, 2, 4,
+        'Clean is for the weak.',
+        '2020-12-11 15:27',
+        '2020-12-10 15:27'),
+        (8, 3, 3,
+        'It''s gonna take a lot to take me away from you There''s nothing that a hundred men or more could ever do I bless the rains down in Africa Gonna take some time to do the things we never have.',
+        '2020-12-13 09:40',
+        '2020-12-13 09:40'),
+        (9, 3, 2,
+        'Toto?',
+        '2020-12-13 10:32',
+        '2020-12-13 10:32'),
+        (10, 4, 2,
+        'Best thing ever!',
+        '2020-12-14 23:59',
+        '2020-12-14 23:59');
+
+INSERT INTO user_comments (comments_id, user_id)
+VALUES (1, 2),
+       (2, 3),
+       (3, 2),
+       (4, 4),
+       (5, 4),
+       (6, 1),
+       (7, 4),
+       (8, 3),
+       (9, 2),
+       (10, 2);
+
+INSERT INTO post_comments (comments_id, post_id)
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 1),
+       (5, 2),
+       (6, 2),
+       (7, 2),
+       (8, 3),
+       (9, 3),
+       (10, 4);
+
+
+
+
