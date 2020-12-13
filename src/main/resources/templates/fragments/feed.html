@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!--/* ############################# POST ################################ */-->
-<th:block th:fragment="post (date)">
+<th:block th:fragment="post">
     <!--/* --------------- ADMIN ----------------- */-->
     <div class="post-modify">
         <a href="#" class="nudge-left"><img class="btn-m" th:src="@{img/ui/btn-edit-admin.svg}" alt=""></a>
@@ -13,7 +13,7 @@
         <div> <!--/* ENTITY CONTAINER */-->
             <div class="post-header">  <!--/* entity.METADATA HEADER */-->
                 <p class="post-header-date"
-                   th:text="'REKOMENDUOTA: ' + ${#temporals.format(date, 'dd-MM-yyyy HH:mm')}">REKOMENDUOTA:
+                   th:text="'REKOMENDUOTA: ' + ${#temporals.format(post.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">REKOMENDUOTA:
                     2020-12-04 17:15</p>
                 <h2 class="post-header-title" th:text="*{title}">TITLE OF RECOMMENDATION</h2>
                 <span class="post-header-tag" th:text="*{type}">TYPE TAG</span>
@@ -36,7 +36,7 @@
             <div class="post-footer-child">
                 <a class="bt-show-comments">
                     <img class="icon-s" src="img/ui/btn-comment.svg" alt="">
-                    <span class="post-footer-text">7 KOMENTARAI</span>
+                    <span class="post-footer-text" th:text="*{comments.size} + ' KOMENTARAI'">7 KOMENTARAI</span>
                 </a>
             </div>
         </div>
@@ -57,16 +57,16 @@
         <button class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-ok.svg}" alt=""></button>
         <button class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-cancel.svg}" alt=""></button>
     </div>
-
-    <div class="comments-feed">
+    <div class="comments-feed" th:each="comment: *{comments}">
         <div class="comment">
-            <img class="comment-image" th:src="@{/img/media/01.JPG}" alt="">
+            <img class="comment-image" th:src="${comment.user.avatarUrl}" alt="">
             <div class="commment-header">
-                <p class="comment-date">2020-12-05 18:11</p>
-                <p class="comment-author">Bitė Vilimaitė</p>
+
+                <p class="comment-date" th:text="${#temporals.format(comment.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">2020-12-05 18:11</p>
+                <p class="comment-author" th:text="${comment.user.nickname}">Bitė Vilimaitė</p>
             </div>
             <div class="comment-body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, ex vel sunt totam in
+                <p th:text="${comment}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, ex vel sunt totam in
                     sint beatae velit. Odio et officiis error dolorum, quisquam, nisi dolores voluptate
                     veniam maiores iure dolorem.</p>
 
@@ -74,23 +74,6 @@
             <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-edit.svg}" alt=""></a>
             <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-delete.svg}" alt=""></a>
 
-        </div>
-    </div>
-
-    <div class="comments-feed">
-        <div class="comment">
-            <img class="comment-image" th:src="@{/img/media/02.jpg}" alt="">
-            <div class="commment-header">
-                <p class="comment-date">2020-12-05 18:02</p>
-                <p class="comment-author">Vingių Jonas</p>
-            </div>
-            <div class="comment-body">
-                <p>Nuostabus filmas. Žiūrėdamas vėl nusikėliau į vaikystės laikus. Radau čia viską:
-                    dramą, siaubą, trilerį, komediją ir quirkyness. Rekomenduoju žiūrėti dviese,
-                    neskubant. Užpildo ilgus vakarus.</p>
-            </div>
-            <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-edit.svg}" alt=""></a>
-            <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-delete.svg}" alt=""></a>
         </div>
     </div>
 </th:block>
