@@ -1,0 +1,120 @@
+.info {
+  font-size: 10pt;
+  font-weight: 600;
+  margin: 10px;
+  color: var(--pink);
+}
+
+.error {
+  font-size: 10pt;
+  font-weight: 400;
+  margin: 10px;
+  color: var(--pink);
+  text-align: right;
+}
+
+.label {
+  font-size: 10pt;
+  font-weight: 400;
+  margin: 11.5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-l {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.btn-l:hover {
+  background-color:var(--grey);
+}
+
+.btn-l-img {
+    width: 25px;
+    height: 25px;
+    margin: 15px;
+}
+
+.btn-m {
+  width: 30px;
+  height: 30px;
+}
+
+.btn-s {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-s:hover {
+  opacity: 0.5;
+}
+
+.icon-s {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-xs {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+
+}
+
+.btn-xs:hover {
+  opacity: 0.5;
+}
+
+.btn-expand-control {
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.btn-expand-control:focus{
+  outline: none;
+}
+
+
+.post-compose-parent {
+  background-color: var(--light-grey);
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-compose-form {
+  flex-direction: column;
+}
+
+.form-column {
+  flex-direction: column;
+}
+
+.label-column a {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input {
+  display: flexbox;
+  margin: 10px;
+  margin-bottom: 0;
+  border: none;
+
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  overflow: auto;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+textarea:focus,
+input:focus {
+  outline: 1px solid var(--pink);
+}
