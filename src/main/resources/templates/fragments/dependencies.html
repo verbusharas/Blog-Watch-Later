@@ -1,0 +1,20 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head (title)" th:assert="${!#strings.isEmpty(title)}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Montserrat:ital,wght@0,100;0,300;0,400;1,200&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
+
+    <title th:text="${title}">Document Title</title>
+</head>
+
+</html>

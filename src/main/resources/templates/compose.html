@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='BLOGAZZ')"/>
+
+
+
+
+<body>
+<div class="parent-container">
+    <header th:replace="fragments/layout :: menu (title='BLOGAZZ')"/>
+    <a th:replace="fragments/buttons :: bt-compose (url='/compose')"/>
+    <main>
+        <section th:replace="fragments/forms :: post-compose-form (post='post')"/>
+    </main>
+
+</div>
+</body>
+</html>

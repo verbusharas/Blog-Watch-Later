@@ -1,0 +1,58 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<header th:fragment="menu">
+    <div class="header-title">
+        <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
+    </div>
+
+    <div class="header-body">
+        <nav>
+            <div th:replace="fragments/layout :: menu-navigation"/>
+            <div th:replace="fragments/layout :: menu-user"/>
+        </nav>
+        <div th:replace="fragments/layout :: menu-quote"/>
+    </div>
+</header>
+
+<div th:fragment="menu-navigation" class="navigation">
+    <p class="navigation-description">Įvairaus turinio rekomendacijos. Didžiausias vėlesnės veiklos
+        planavimo portalas šalyje.</p>
+    <div class="navigation-menu">
+        <div class="navigation-menu-items-primary">
+            <a href="#">REKOMENDACIJOS</a>
+            <a href="#">APIE</a>
+            <a href="#">PAREMK</a>
+        </div>
+        <div class="navigation-menu-items-secondary">
+            <a href="#">TINKLALAIDĖS</a>
+            <a href="#">FILMAI</a>
+            <a href="#">SERIALAI</a>
+            <a href="#">ŽAIDIMAI</a>
+            <a href="#">PROGRAMĖLĖS</a>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="menu-user" class="menu-user">
+    <img class="menu-user-image" th:src="@{/img/user_avatars/02.JPG}" alt="User Avatar">
+    <div class="language-select">
+        <a href="#">LT</a>
+        <span>|</span>
+        <a href="#">EN</a>
+    </div>
+    <div class="user-profile-select">
+        <i class="far fa-user"></i>
+        <a href="#">Šarūnas Verbus</a>
+    </div>
+    <a class="logout" href="#">atsijungti</a>
+</div>
+
+<div th:fragment="menu-quote" class="quote-container">
+    <p class="quote-text"><span class="highlight">"</span>Socializuotis nebemadinga, pavojinga, o dar ir
+        draudžiama, atrask, ką
+        turiningo nuveikti
+        užsidarius namie!<span class="highlight">"</span></p>
+    <p class="quote-author">- Intravertas Anonimas</p>
+</div>
+
+

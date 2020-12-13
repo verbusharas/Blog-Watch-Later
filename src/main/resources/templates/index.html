@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Home</title>
-</head>
+<head th:replace="fragments/dependencies :: head (title='BLOGAZZ')"/>
+
+
 <body>
-    <div class="container">
-        <h1 th:text="'Welcome. This is a BLOG'">Welcome. This is a BLOG</h1>
-    </div>
+<div class="parent-container">
+
+    <!--    MAIN MENU BANNER-->
+    <header th:replace="fragments/layout :: menu (title='BLOGAZZ')"/>
+    <!--   ADMIN "+" BUTTON-->
+    <a th:replace="fragments/buttons :: bt-compose (url='/compose')"/>
+    <main>
+
+        <!--        ON EMPTY LIST-->
+        <th:block th:if="${posts.empty}">
+            <p>Postukų nėra</p>
+        </th:block>
+
+        <!--        ON NOT EMPTY LIST-->
+        <!--        ITERATE THROUGH LOADED POSTS-->
+        <th:block th:if="${not posts.empty}" th:each="post: ${posts}">
+            <!--            RENDER EACH POST FRAGMENT, PASS CREATION DATE, NUDGE UP THE 1ST POST-->
+            <article class="post to-column expanded">
+                <div class="post-content-section" th:include="fragments/feed :: post (date = ${post.creationTimeStamp})"
+                     th:object="${post} ">
+                </div>
+                <div class="comments-section expanded" th:include="fragments/feed :: comments">
+                </div>
+            </article>
+
+        </th:block>
+    </main>
+</div>
+
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>

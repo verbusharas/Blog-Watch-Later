@@ -1,0 +1,42 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<section th:fragment="post-compose-form (post)" class="post-compose-parent nudge-up">
+    <article class="post-compose-form">
+        <h3 class="info">NAUJA REKOMENDACIJA:</h3>
+        <form th:action="@{/compose}" method="POST" th:object="${__${post}__}">
+            <div class="to-row">
+                <div class="form-column w20">
+                    <p class="label">PAVADINIMAS:</p>
+                    <p class="label">TIPAS:</p>
+                    <p class="label">ILIUSTRACIJOS URL:</p>
+                    <p class="label">APRAŠYMAS:</p>
+                    <p class="error not-displayed">Aprašymą turi sudaryti bent 5 simboliai! ►</p>
+                </div>
+
+                <div class="form-column w80">
+                    <input class="input w50" type="text" id="tfTitle" placeholder="Pvz. Game Of Thrones" th:field="*{title}">
+                    <span class="error not-displayed">◄ Negali būti tuščias!</span>
+
+                    <input class="input w50" type="text" id="tfType" placeholder="Pvz. HBO serialas" th:field="*{type}">
+                    <span class="error not-displayed">◄ Negali būti tuščias!</span>
+
+                    <input class="input w98" type="text" id="tfImageUrl"
+                           placeholder="Pvz. https://www.google.lt/logo.jpg" th:field="*{imageUrl}">
+
+                    <textarea class="input w98" type="text" rows="10" th:field="*{body}"></textarea>
+                </div>
+
+                <div class="to-column-bottom">
+                    <a href="/index" class="btn-l"><img class="btn-l-img" src="img/ui/btn-cancel.svg"></a>
+
+                    <button type="submit" class="btn-l"><img class="btn-l-img" src="img/ui/btn-ok.svg" alt=""></button>
+                </div>
+            </div>
+
+        </form>
+    </article>
+    <div class="post-image-container">
+        <img class="post-image" src="/img/media/no-image.png" alt="Image Location">
+    </div>
+</section>
