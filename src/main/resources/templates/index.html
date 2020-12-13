@@ -12,20 +12,20 @@
     <a th:replace="fragments/buttons :: bt-compose (url='/compose')"/>
     <main>
 
-        <!--        ON EMPTY LIST-->
+
         <th:block th:if="${posts.empty}">
             <p>Postukų nėra</p>
         </th:block>
 
-        <!--        ON NOT EMPTY LIST-->
-        <!--        ITERATE THROUGH LOADED POSTS-->
         <th:block th:if="${not posts.empty}" th:each="post: ${posts}">
-            <!--            RENDER EACH POST FRAGMENT, PASS CREATION DATE, NUDGE UP THE 1ST POST-->
+
             <article class="post to-column expanded">
-                <div class="post-content-section" th:include="fragments/feed :: post (date = ${post.creationTimeStamp})"
-                     th:object="${post} ">
+                <!--    RENDER EACH POST FRAGMENT, PASS CREATION DATE-->
+                <div class="post-content-section" th:include="fragments/feed :: post"
+                     th:object="${post}">
                 </div>
-                <div class="comments-section expanded" th:include="fragments/feed :: comments">
+                <!--    RENDER EACH POST-COMMENT FRAGMENT -->
+                <div class="comments-section expanded" th:include="fragments/feed :: comments" th:object="${post}">
                 </div>
             </article>
 
