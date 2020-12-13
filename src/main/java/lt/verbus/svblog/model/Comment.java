@@ -1,6 +1,7 @@
 package lt.verbus.svblog.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,23 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private Post post;
 
     @CreationTimestamp
@@ -35,5 +35,9 @@ public class Comment {
 
     private String body;
 
+    @Override
+    public String toString() {
+        return body;
+    }
 
 }
