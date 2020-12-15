@@ -2,7 +2,9 @@
 
 <header th:fragment="menu">
     <div class="header-title">
-        <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
+        <a th:href="@{/}">
+            <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
+        </a>
     </div>
 
     <div class="header-body">
@@ -45,6 +47,8 @@
         <a href="#">Šarūnas Verbus</a>
     </div>
     <a class="logout" href="#">atsijungti</a>
+    <a class="logout" href="/private/user">VARTOTOJAI</a>
+    <a class="logout" href="/user/register">REGISTRACIJA</a>
 </div>
 
 <div th:fragment="menu-quote" class="quote-container">
