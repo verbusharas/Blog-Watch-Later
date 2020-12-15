@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="user-row">
+    <td th:text="*{id}">1</td>
+    <td class="td-avatar"><img class="avatar-preview" th:src="*{avatarUrl}" alt="user avatar"></td>
+    <td th:text="*{username}">admin@admin.com</td>
+    <td th:text="*{nickname}">Admin</td>
+    <td th:text="*{comments.size}">36</td>
+    <td th:text="*{roles}">ADMIN</td>
+    <td>-</td>
+</th:block>
+
+<th:block th:fragment="header-row">
+    <th scope="col">ID</th>
+    <th scope="col">AVATARAS</th>
+    <th scope="col">EL. PAŠTAS</th>
+    <th scope="col">PSEUDONIMAS</th>
+    <th scope="col">KOMENTARŲ</th>
+    <th scope="col">ROLĖ</th>
+    <th scope="col">VEIKSMAI</th>
+</th:block>
