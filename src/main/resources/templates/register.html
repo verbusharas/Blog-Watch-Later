@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='Naujo vartotojo registracija - ŽIŪRĖTI VĖLIAU')"/>
+<body>
+<div class="parent-container">
+    <!--    MAIN MENU BANNER-->
+    <header th:replace="fragments/layout :: menu"/>
+    <main>
+        <section class="post-compose-parent pb20">
+            <article class="post-compose-form w98">
+                <h3 class="info">VARTOTOJO REGISTRACIJA:</h3>
+                <form th:action="@{/user/register}" method="POST" th:object="${user}">
+                    <div class="to-row-center">
+                        <div class="form-column w35">
+                            <p class="label">EL.PAŠTAS*:</p>
+                            <p class="label">PSEUDONIMAS*:</p>
+                            <p class="label">SLAPTAŽODIS*:</p>
+                            <p class="label">SLAPTAŽODIS*:</p>
+                            <p class="label">AVATARO URL:</p>
+                        </div>
+
+                        <div class="form-column w50">
+                            <input th:field="*{username}" type="text" class="input w80" id="tfUsername">
+                            <input th:field="*{nickname}" type="text" class="input w80" id="tfNickname">
+                            <input th:field="*{password}" type="password" class="input w80" id="tfPassword">
+                            <input th:field="*{password}" type="password" class="input w80" id="tfPasswordConfirm">
+                            <input th:field="*{avatarUrl}" type="text" class="input w80" id="tfAvatarUrl">
+                        </div>
+                        <div class="form-column">
+                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                        </div>
+                        <div class="to-row">
+                            <button class="btn-l" type="submit"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
+                            <a th:href="@{/}" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}" alt=""></a>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </section>
+
+    </main>
+</div>
+</body>
+</html>
