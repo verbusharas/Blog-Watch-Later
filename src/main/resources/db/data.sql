@@ -25,15 +25,15 @@ INSERT INTO role (id, role_name)
 VALUES (1, 'ADMIN'),
        (2, 'USER');
 
-INSERT INTO user (id, username, password, nickname, avatar_url, role_id)
-VALUES (1, 'admin', 'adminas', 'ADMIN',
-        'https://cdn.pixabay.com/photo/2016/10/31/00/31/settings-1784649_960_720.png', 1),
-       (2, 'jonas', 'jonas', 'Vingiu Jonas',
-        'https://ih1.redbubble.net/image.233704944.3693/flat,750x1000,075,f.u3.jpg', 2),
-       (3, 'bite', 'bite', 'Bitė Vilimaitė',
-        'https://i.pinimg.com/236x/6e/44/4d/6e444dc57ec98ffbaabd288f40f00eae--kiss-art-a-kiss.jpg', 2),
-       (4, 'thug', 'thug', 'Finansinis Nusikaltėlis',
-        'https://assets.awwwards.com/awards/images/2013/06/secret-life-heroes%20(44).jpg', 2);
+INSERT INTO user (id, username, password, nickname, avatar_url)
+VALUES (1, 'admin@ziurekveliau.lt', '{bcrypt}$2y$12$6Jgr7kqSpP9tPoDFaOKlWOKuEfa5Umy1gg9swTEx7UE04cawW6J3u', 'ADMIN',
+        'https://cdn.pixabay.com/photo/2016/10/31/00/31/settings-1784649_960_720.png'),
+       (2, 'jonas@post.lt', '{bcrypt}$2y$12$7EpdJx/NKl0hYLlnjP5q1uFX1Ene6s3.DbI95hCIq1Xy5yA8/oKw6', 'Vingiu Jonas',
+        'https://ih1.redbubble.net/image.233704944.3693/flat,750x1000,075,f.u3.jpg'),
+       (3, 'bite@post.lt', '{bcrypt}$2y$12$Y6KSFoZ0Zy34EBysAWnfCOB7sAqSq9PpiSyein94LDpCl03O52ICS', 'Bitė Vilimaitė',
+        'https://i.pinimg.com/236x/6e/44/4d/6e444dc57ec98ffbaabd288f40f00eae--kiss-art-a-kiss.jpg'),
+       (4, 'thug@post.lt', '{bcrypt}$2y$12$OYfZdbBU8qhKVeb6ormO8unuIWUAVBHs5/qTTP0iLhh2T99SKusEe', 'Finansinis Nusikaltėlis',
+        'https://assets.awwwards.com/awards/images/2013/06/secret-life-heroes%20(44).jpg');
 
 
 INSERT INTO role_users (role_id, users_id)
@@ -41,7 +41,6 @@ VALUES (1, 1),
        (2, 2),
        (2, 3),
        (2, 4);
-
 
 
 INSERT INTO comment (id, post_id, user_id, body, creation_time_stamp, update_time_stamp)
