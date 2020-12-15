@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+<body>
+
+<div class="parent-container">
+    <header th:replace="fragments/layout :: menu"/>
+    <main>
+        <h1>REIKIA PRISIJUNGTI</h1>
+        <div class="header-title">
+            <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
+        </div>
+    </main>
+</div>
+</body>
+</html>
