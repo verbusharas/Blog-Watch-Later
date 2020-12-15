@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='Registruotų vartotojų sąrašas - ŽIŪRĖTI VĖLIAU')"/>
+    <body>
+        <div class="parent-container">
+            <!--    MAIN MENU BANNER-->
+                <header th:replace="fragments/layout :: menu"/>
+                <main>
+                    <table class="table">
+                        <thead>
+                        <tr th:include="fragments/tables :: header-row"></tr>
+                        </thead>
+                        <tbody th:if="${users.empty}">Vartotojų nėra</tbody>
+                        <tbody th:if="${not users.empty}" th:each="user: ${users}">
+                        <tr th:include="fragments/tables :: user-row" th:object="${user}"></tr>
+                        </tbody>
+                    </table>
+                </main>
+        </div>
+    </body>
+</html>
