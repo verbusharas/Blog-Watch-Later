@@ -23,14 +23,14 @@
                             <input th:field="*{username}" type="text" class="input w80" id="tfUsername">
                             <input th:field="*{nickname}" type="text" class="input w80" id="tfNickname">
                             <input th:field="*{password}" type="password" class="input w80" id="tfPassword">
-                            <input th:field="*{password}" type="password" class="input w80" id="tfPasswordConfirm">
+                            <input th:field="*{confirmPassword}" type="password" class="input w80" id="tfConfirmPassword">
                             <input th:field="*{avatarUrl}" type="text" class="input w80" id="tfAvatarUrl">
                         </div>
                         <div class="form-column">
                             <p class="error not-displayed">◄ Negali būti tuščias!</p>
                             <p class="error not-displayed">◄ Negali būti tuščias!</p>
-                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
-                            <p class="error not-displayed">◄ Negali būti tuščias!</p>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">◄ Klaidos tekstas!</p>
+                            <p class="error">◄ Klaidos tekstas!</p>
                             <p class="error not-displayed">◄ Negali būti tuščias!</p>
                         </div>
                         <div class="to-row">
