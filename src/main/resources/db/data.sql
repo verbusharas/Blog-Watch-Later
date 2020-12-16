@@ -26,7 +26,7 @@ VALUES (1, 'ADMIN'),
        (2, 'USER');
 
 INSERT INTO user (id, username, password, nickname, avatar_url)
-VALUES (1, 'admin@ziurekveliau.lt', '{bcrypt}$2y$12$6Jgr7kqSpP9tPoDFaOKlWOKuEfa5Umy1gg9swTEx7UE04cawW6J3u', 'ADMIN',
+VALUES (1, 'admin', '{bcrypt}$2y$12$dlIh7.olDvlfRUA8ODvR4.CL7i7NVLhD4YB9593e/L27l/ZTSxdmK', 'ADMIN',
         'https://cdn.pixabay.com/photo/2016/10/31/00/31/settings-1784649_960_720.png'),
        (2, 'jonas@post.lt', '{bcrypt}$2y$12$7EpdJx/NKl0hYLlnjP5q1uFX1Ene6s3.DbI95hCIq1Xy5yA8/oKw6', 'Vingiu Jonas',
         'https://ih1.redbubble.net/image.233704944.3693/flat,750x1000,075,f.u3.jpg'),
