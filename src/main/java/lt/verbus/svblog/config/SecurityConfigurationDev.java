@@ -26,5 +26,9 @@ public class SecurityConfigurationDev extends WebSecurityConfigurerAdapter {
         webSecurity.ignoring().antMatchers("/**");
     }
 
+    @Bean
+    public PasswordEncoder encoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
 }
