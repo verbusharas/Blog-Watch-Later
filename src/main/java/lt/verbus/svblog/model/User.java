@@ -1,7 +1,13 @@
 package lt.verbus.svblog.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
+import lt.verbus.svblog.annotation.PasswordValueMatch;
+import lt.verbus.svblog.annotation.ValidPassword;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,15 +20,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+
+@PasswordValueMatch.List({
+        @PasswordValueMatch(
+                field = "password",
+                fieldMatch = "confirmPassword",
+                message = "Passwords do not match!"
+        )
+})
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@ToString
 public class User implements UserDetails {
 
     @Id
@@ -31,7 +50,16 @@ public class User implements UserDetails {
 
     private String username;
 
+    @ValidPassword
+    @NotNull
+    @NotBlank(message = "New password is mandatory")
     private String password;
+
+    @ValidPassword
+    @NotNull
+    @NotBlank(message = "New password is mandatory")
+    @Transient
+    private String confirmPassword;
 
     private String nickname;
 
