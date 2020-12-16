@@ -1,19 +1,26 @@
 package lt.verbus.svblog.service;
 
-import lt.verbus.svblog.model.Post;
+import lt.verbus.svblog.model.Role;
 import lt.verbus.svblog.model.User;
 import lt.verbus.svblog.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getAll(){
@@ -21,7 +28,15 @@ public class UserService {
     }
 
     public User save(User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        user.setConfirmPassword(encodedPassword);
+        user.setRoles(Set.of(new Role(2L, "USER")));
         return userRepository.save(user);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+    }
 }
