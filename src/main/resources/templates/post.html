@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+
+
+<body>
+<div class="parent-container">
+
+    <!--    MAIN MENU BANNER-->
+    <header th:replace="fragments/layout :: menu"/>
+    <!--   ADMIN "+" BUTTON-->
+    <a th:replace="fragments/buttons :: bt-compose (url='/compose')"/>
+    <main>
+        <!--    RENDER ACTIVATED POST AS EXPANDED -->
+        <article class="post to-column expanded">
+            <div class="post-content-section" th:insert="fragments/post/expanded :: post (state='expanded')"
+                 th:object="${post}">
+            </div>
+        </article>
+        <!--    RENDER THE REST OF THE POSTS AS COLLAPSED -->
+        <th:block th:unless="${otherPosts.empty}" th:each="otherPost: ${otherPosts}">
+            <article class="post to-column">
+                <div class="post-content-section" th:insert="fragments/post/expanded :: post (state='collapsed')"
+                     th:object="${otherPost}">
+                </div>
+            </article>
+        </th:block>
+    </main>
+</div>
+
+</body>
+</html>
