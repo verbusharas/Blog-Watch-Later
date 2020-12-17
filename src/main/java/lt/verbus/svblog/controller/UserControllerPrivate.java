@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/private/user")
 
-public class UserControllerPrivate {
+public class UserControllerPrivate extends DefaultController {
 
     private final UserService userService;
 
