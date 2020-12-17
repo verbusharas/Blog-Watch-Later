@@ -28,13 +28,17 @@ VALUES (1, 'ADMIN'),
 INSERT INTO user (id, username, password, nickname, avatar_url)
 VALUES (1, 'admin', '{bcrypt}$2y$12$dlIh7.olDvlfRUA8ODvR4.CL7i7NVLhD4YB9593e/L27l/ZTSxdmK', 'ADMIN',
         'https://cdn.pixabay.com/photo/2016/10/31/00/31/settings-1784649_960_720.png'),
-       (2, 'jonas@post.lt', '{bcrypt}$2y$12$7EpdJx/NKl0hYLlnjP5q1uFX1Ene6s3.DbI95hCIq1Xy5yA8/oKw6', 'Vingiu Jonas',
+       (2, 'jonas@post.lt', '{bcrypt}$2y$12$eW1nd9VlRH.RCXURc/Xi9.gzhxddbwfeePEZyYR.mtCAiiGgtopZ.', 'Vingiu Jonas',
         'https://ih1.redbubble.net/image.233704944.3693/flat,750x1000,075,f.u3.jpg'),
-       (3, 'bite@post.lt', '{bcrypt}$2y$12$Y6KSFoZ0Zy34EBysAWnfCOB7sAqSq9PpiSyein94LDpCl03O52ICS', 'Bitė Vilimaitė',
+       (3, 'bite@post.lt', '{bcrypt}$2y$12$xrMBDfrXZ0AXbNhOE82jw.1LV9Iq26G6iPMxcW0G1X9LkjeRvShpu', 'Bitė Vilimaitė',
         'https://i.pinimg.com/236x/6e/44/4d/6e444dc57ec98ffbaabd288f40f00eae--kiss-art-a-kiss.jpg'),
-       (4, 'thug@post.lt', '{bcrypt}$2y$12$OYfZdbBU8qhKVeb6ormO8unuIWUAVBHs5/qTTP0iLhh2T99SKusEe', 'Finansinis Nusikaltėlis',
+       (4, 'thug@post.lt', '{bcrypt}$2y$12$g3C4WkNvu6z3IDiLltk.Y.hGjhv./miApr7K0RsA3txtt520fBxlS', 'Finansinis Nusikaltėlis',
         'https://assets.awwwards.com/awards/images/2013/06/secret-life-heroes%20(44).jpg');
 
+-- admin:admin
+-- jonas@post.lt:jonas1
+-- bite@post.lt:bite1
+-- thug@post.lt:thug1
 
 INSERT INTO role_users (role_id, users_id)
 VALUES (1, 1),
