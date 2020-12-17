@@ -13,14 +13,15 @@
         <div> <!--/* ENTITY CONTAINER */-->
             <div class="post-header">  <!--/* entity.METADATA HEADER */-->
                 <p class="post-header-date"
-                   th:text="'REKOMENDUOTA: ' + ${#temporals.format(post.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">REKOMENDUOTA:
+                   th:text="'REKOMENDUOTA: ' + ${#temporals.format(post.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">
+                    REKOMENDUOTA:
                     2020-12-04 17:15</p>
                 <h2 class="post-header-title" th:text="*{title}">TITLE OF RECOMMENDATION</h2>
                 <span class="post-header-tag" th:text="*{type}">TYPE TAG</span>
             </div>
 
             <div class="post-body"> <!--/* entity.BODY WITH EXPAND CONTROL */-->
-                <p class="post-text columns" th:text="*{body}">Post text body block.</p>
+                <p class="post-text columns" th:text="*{body.length} > 650 ? *{body.substring(0,20)} + '...' : 'maziau nei 650'">Post text body block.</p>
                 <div class="btn-expand-control to-row-end">
                     <a>SKAITYTI DAUGIAU</a>
                 </div>
@@ -51,22 +52,27 @@
 <!--/* ############################# COMMENTS ################################ */-->
 <th:block th:fragment="comments">
     <div class="new-comment-block">
+        <form action="@{/}" method="POST">
                         <textarea class="new-comment-field" name="tfComment" cols="70" rows="3"
                                   placeholder="Pasidalink savo nuomone..."></textarea>
 
-        <button class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-ok.svg}" alt=""></button>
-        <button class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-cancel.svg}" alt=""></button>
+            <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-ok.svg}" alt=""></button>
+            <button type="reset" class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-cancel.svg}" alt=""></button>
+        </form>
     </div>
+
     <div class="comments-feed" th:each="comment: *{comments}">
         <div class="comment">
             <img class="comment-image" th:src="${comment.user.avatarUrl}" alt="">
             <div class="commment-header">
 
-                <p class="comment-date" th:text="${#temporals.format(comment.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">2020-12-05 18:11</p>
+                <p class="comment-date" th:text="${#temporals.format(comment.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">
+                    2020-12-05 18:11</p>
                 <p class="comment-author" th:text="${comment.user.nickname}">Bitė Vilimaitė</p>
             </div>
             <div class="comment-body">
-                <p th:text="${comment}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, ex vel sunt totam in
+                <p th:text="${comment}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, ex vel sunt
+                    totam in
                     sint beatae velit. Odio et officiis error dolorum, quisquam, nisi dolores voluptate
                     veniam maiores iure dolorem.</p>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
 
 
@@ -11,8 +11,6 @@
     <!--   ADMIN "+" BUTTON-->
     <a th:replace="fragments/buttons :: bt-compose (url='/compose')"/>
     <main>
-
-
         <th:block th:if="${posts.empty}">
             <p>Postukų nėra</p>
         </th:block>

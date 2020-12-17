@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <header th:fragment="menu">
     <div class="header-title">
@@ -36,7 +36,7 @@
 </div>
 
 <div th:fragment="menu-user" class="menu-user">
-    <img class="menu-user-image" th:src="@{/img/user_avatars/02.JPG}" alt="User Avatar">
+    <img class="menu-user-image" sec:authorize="isAuthenticated()" th:src="${user.avatarUrl}" alt="User Avatar">
     <div class="language-select">
         <a href="#">LT</a>
         <span>|</span>
@@ -44,9 +44,17 @@
     </div>
     <div class="user-profile-select">
         <i class="far fa-user"></i>
-        <a href="#">Šarūnas Verbus</a>
+        <a href="#" sec:authorize="isAuthenticated()" th:text="${user.username}">sarunas@verbus.lt</a>
+        <p sec:authorize="isAuthenticated()" th:text="${user.nickname}">explicito</p>
+        <p sec:authorize="!isAuthenticated()" th:text="'Neprisijungęs Svečias'">Neprisijungęs Svečias</p>
+
+<!--        <a href="#" sec:authorize="!isAuthenticated()" th:text="${#authentication.nickname}">nickname: explicito</a>-->
     </div>
-    <a class="logout" href="#">atsijungti</a>
+    <form th:action="@{/sign-out}" method="POST">
+        <button type="submit" sec:authorize="isAuthenticated()">
+            <a class="logout">atsijungti</a>
+        </button>
+    </form>
     <a class="logout" href="/private/user">VARTOTOJAI</a>
     <a class="logout" href="/user/register">REGISTRACIJA</a>
 </div>
