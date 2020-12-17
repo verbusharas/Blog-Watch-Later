@@ -28,13 +28,13 @@
 }
 
 .btn-l:hover {
-  background-color:var(--grey);
+  background-color: var(--grey);
 }
 
 .btn-l-img {
-    width: 25px;
-    height: 25px;
-    margin: 15px;
+  width: 25px;
+  height: 25px;
+  margin: 15px;
 }
 
 .btn-m {
@@ -60,7 +60,6 @@
   width: 15px;
   height: 15px;
   margin: 5px;
-
 }
 
 .btn-xs:hover {
@@ -72,10 +71,9 @@
   cursor: pointer;
 }
 
-.btn-expand-control:focus{
+.btn-expand-control:focus {
   outline: none;
 }
-
 
 .post-compose-parent {
   background-color: var(--light-grey);
@@ -94,8 +92,8 @@
 }
 
 .label-column a {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .input {
@@ -103,7 +101,6 @@
   margin: 10px;
   margin-bottom: 0;
   border: none;
-
 }
 
 textarea {
@@ -118,3 +115,5 @@ textarea:focus,
 input:focus {
   outline: 1px solid var(--pink);
 }
+
+

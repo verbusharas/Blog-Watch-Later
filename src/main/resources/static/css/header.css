@@ -9,6 +9,7 @@ nav,
 
 header {
   background-color: var(--light-grey);
+  background-image: url("/img/ui/pattern-8.png");
 }
 
 .header-title {

@@ -17,7 +17,9 @@
                  th:insert="fragments/post/expanded :: post (state='expanded')"
                  th:object="${post}">
             </div>
-            <div class="comments-section expanded" th:insert="fragments/post/comment" th:object="${post}">
+            <div class="comments-section expanded" th:insert="fragments/post/comment :: compose" th:object="${comment}">
+            </div>
+            <div class="comments-section expanded" th:insert="fragments/post/comment :: feed" th:object="${post}">
             </div>
         </article>
         <!--    RENDER THE REST OF THE POSTS AS COLLAPSED -->

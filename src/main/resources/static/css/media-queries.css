@@ -179,4 +179,18 @@
   .post {
     width: 100%;
   }
+
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  td {
+    display: block;
+    width: 50%;
+    text-align: center;
+  }
+
+
 }
