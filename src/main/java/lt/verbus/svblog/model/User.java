@@ -41,7 +41,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@ToString
 public class User implements UserDetails {
 
     @Id
