@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,11 +20,15 @@ public class PostService {
     }
 
     public List<Post> getAll(){
-        return postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
+        Collections.reverse(posts);
+        return posts;
     }
 
     public List<Post> getAllExcept(Long id){
-        return postRepository.findByIdIsNot(id);
+        List<Post> posts = postRepository.findByIdIsNot(id);
+        Collections.reverse(posts);
+        return posts;
     }
 
     public Post getPostById(Long id) {
