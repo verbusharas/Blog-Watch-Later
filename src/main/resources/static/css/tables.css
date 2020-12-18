@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    border-collapse: collapse;
+}
+
+.td-avatar {
+    width: 50px;
+}
+
+th {
+    font-size: 10pt;
+    background-color: var(--light-grey);
+    border: none;
+    padding: 5px;
+}
+
+td {
+    font-size: 10pt;
+    text-align: center;
+    border: none;
+    background-color: var(--very-light-grey);
+    border-bottom: 1px solid var(--grey);
+}
+
+.avatar-preview {
+    filter: grayscale();
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+  }
