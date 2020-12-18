@@ -1,10 +1,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
-<section th:fragment="post-compose (post)" class="post-compose-parent nudge-up">
+<!--/*    NEW POST FORM */-->
+<section th:fragment="post-compose" class="post-compose-parent nudge-up">
     <article class="post-compose-form">
         <h3 class="info">NAUJA REKOMENDACIJA:</h3>
-        <form th:action="@{/compose}" method="POST" th:object="${__${post}__}">
+        <form th:action="@{/post/compose}" method="POST" th:object="${newPost}">
             <div class="to-row">
                 <div class="form-column w20">
                     <p class="label">PAVADINIMAS:</p>
@@ -28,12 +28,10 @@
                 </div>
 
                 <div class="to-column-bottom">
-                    <a href="/index" class="btn-l"><img class="btn-l-img" src="img/ui/btn-cancel.svg"></a>
-
-                    <button type="submit" class="btn-l"><img class="btn-l-img" src="img/ui/btn-ok.svg" alt=""></button>
+                    <a href="/index" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}"></a>
+                    <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
                 </div>
             </div>
-
         </form>
     </article>
     <div class="post-image-container">
@@ -41,14 +39,14 @@
     </div>
 </section>
 
+<!--/*    NEW COMMENT FORM */-->
 <th:block th:fragment="comment-compose">
     <div>
-        <form th:action="@{/post/comment}" method="POST" class="new-comment-block" th:object="${comment}">
+        <form th:action="@{/post/comment}" method="POST" class="new-comment-block" th:object="${newComment}">
             <textarea class="new-comment-field" name="tfComment" cols="70" rows="3"
                       placeholder="Pasidalink savo nuomone..." th:field="*{message}"></textarea>
 
             <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
-            <button type="reset" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}" alt="">
             </button>
         </form>
     </div>
