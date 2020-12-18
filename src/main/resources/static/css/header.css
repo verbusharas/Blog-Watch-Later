@@ -10,6 +10,7 @@ nav,
 header {
   background-color: var(--light-grey);
   background-image: url("/img/ui/pattern-8.png");
+  box-shadow: 0px 0px 15px #b8b8b8;
 }
 
 .header-title {

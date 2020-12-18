@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -30,31 +30,57 @@ public class PostController extends DefaultController {
         this.commentService = commentService;
     }
 
+    @GetMapping
+    public String goHome() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/compose")
+    public String compose(Model model) {
+        model.addAttribute("post", new Post());
+        return "composeEarly";
+    }
+
+    @PostMapping("/compose")
+    public String publish(@ModelAttribute("post") Post post, Model model) {
+        postService.save(post);
+        return "redirect:/index";
+    }
 
     @GetMapping("/{id}")
     public String getSinglePost(@PathVariable Long id, Model model) {
         model.addAttribute("post", postService.getPostById(id));
         model.addAttribute("otherPosts", postService.getAllExcept(id));
-        return "post";
+        return "post/view";
     }
-
 
     @GetMapping("/{id}/comment")
     public String getSinglePostComments(@PathVariable Long id, Model model) {
         model.addAttribute("post", postService.getPostById(id));
         model.addAttribute("otherPosts", postService.getAllExcept(id));
         model.addAttribute("comment", new Comment());
-        return "post-comment";
+        return "post/comment";
     }
 
     @PostMapping("/comment")
     public String createComment(@ModelAttribute Comment comment,
                                 @ModelAttribute("post") Post post,
-                                @AuthenticationPrincipal User user, Model model) {
+                                @AuthenticationPrincipal User user,
+                                Model model) {
         comment.setPost(post);
         comment.setUser(user);
-        commentService.save(comment);
-        return "redirect:/post/" + comment.getPost().getId() + "/comment";
+        post.getComments().add(comment);
+        postService.save(post);
+        return "redirect:/post/" + post.getId() + "/comment";
     }
+
+    @GetMapping("/comment/{commentId}/delete")
+    public String deleteComment(@PathVariable Long commentId,
+                                @ModelAttribute("post") Post post,
+                                Model model) {
+        commentService.deleteComment(commentService.getCommentById(commentId));
+        return "redirect:/post/" + post.getId() + "/comment";
+    }
+
 
 }

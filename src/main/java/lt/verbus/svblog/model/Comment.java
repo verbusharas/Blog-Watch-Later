@@ -8,27 +8,22 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
-public class Comment {
+public class Comment implements Comparable<Comment>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
     @CreationTimestamp
@@ -37,11 +32,16 @@ public class Comment {
     @UpdateTimestamp
     private LocalDateTime updateTimeStamp;
 
-    private String body;
+    private String message;
 
     @Override
     public String toString() {
-        return body;
+        return message;
     }
 
+
+    @Override
+    public int compareTo(Comment c2) {
+        return creationTimeStamp.compareTo(c2.creationTimeStamp);
+    }
 }

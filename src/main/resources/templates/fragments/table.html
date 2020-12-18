@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="user-row">
+<th:block th:fragment="user-entity-row">
     <td th:text="*{id}">1</td>
     <td class="td-avatar"><img class="avatar-preview" th:src="*{avatarUrl}" alt="user avatar"></td>
     <td th:text="*{username}">admin@admin.com</td>
@@ -10,7 +10,7 @@
     <td>-</td>
 </th:block>
 
-<th:block th:fragment="header-row">
+<th:block th:fragment="user-header-row">
     <th scope="col">ID</th>
     <th scope="col">AVATARAS</th>
     <th scope="col">EL. PAŠTAS</th>

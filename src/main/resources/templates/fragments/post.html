@@ -1,14 +1,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<!--/* ############################# POST ################################ */-->
-<th:block th:fragment="post">
+<th:block th:fragment="body (state)">
     <!--/* --------------- ADMIN ----------------- */-->
     <div class="post-modify">
-        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{img/ui/btn-edit-admin.svg}" alt=""></a>
-        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{img/ui/btn-delete-admin.svg}" alt=""></a>
+        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
+        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
     </div>
     <!--/* --------------------------------------- */-->
-
     <div class="post-texts-block">  <!--/* TEXTUAL SEGMENT (WITHOUT ILLUSTRATION) */-->
         <div> <!--/* ENTITY CONTAINER */-->
             <div class="post-header">  <!--/* entity.METADATA HEADER */-->
@@ -19,24 +16,32 @@
                 <h2 class="post-header-title" th:text="*{title}">TITLE OF RECOMMENDATION</h2>
                 <span class="post-header-tag" th:text="*{type}">TYPE TAG</span>
             </div>
-
             <div class="post-body"> <!--/* entity.BODY WITH EXPAND CONTROL */-->
-                <p class="post-text columns" th:text="*{body.length} > 650 ? *{body.substring(0,20)} + '...' : 'maziau nei 650'">Post text body block.</p>
-                <div class="btn-expand-control to-row-end">
-                    <a>SKAITYTI DAUGIAU</a>
-                </div>
+
+                <th:block th:if="${state}=='expanded'">
+                    <p class="post-text columns" th:text="*{body} ">Post text body block.</p>
+                    <div class="btn-expand-control to-row-end">
+                        <a th:href="@{/}" th:text="'SUSKLEISTII'">SUSKLEISTI</a>
+                    </div>
+                </th:block>
+                <th:block th:unless="${state}=='expanded'">
+                    <p class="post-text" th:text="*{body.length} > 300 ? *{body.substring(0,300)} + '...' : *{body}">
+                        Post text body block.</p>
+                    <div class="btn-expand-control to-row-end">
+                        <a th:href="@{/post/{id}(id=*{id})}" th:text="'SKAITYTI DAUGIAUU'">SKAITYTI DAUGIAU</a>
+                    </div>
+                </th:block>
             </div>
         </div>
-
         <div class="post-footer"> <!--/* LIKE AND COMMENT BUTTON FOOTER */-->
             <div class="post-footer-child">
                 <a href="#">
-                    <img class="btn-s" src="img/ui/btn-agree-inactive.svg" alt=""></a>
+                    <img class="btn-s" src="/img/ui/btn-agree-inactive.svg" alt=""></a>
                 <span class="post-footer-text">6 PRITARIA</span>
             </div>
             <div class="post-footer-child">
-                <a class="bt-show-comments">
-                    <img class="icon-s" src="img/ui/btn-comment.svg" alt="">
+                <a th:href="@{/post/{id}/comment(id=*{id})}" class="bt-show-comments">
+                    <img class="icon-s" src="/img/ui/btn-comment.svg" alt="">
                     <span class="post-footer-text" th:text="*{comments.size} + ' KOMENTARAI'">7 KOMENTARAI</span>
                 </a>
             </div>
@@ -46,20 +51,15 @@
         <img class="post-image" th:src="*{imageUrl}" alt="Illustration">
     </div>
 </th:block>
-<!--/* ####################################################################### */-->
 
-
-<!--/* ############################# COMMENTS ################################ */-->
 <th:block th:fragment="comments">
-    <div class="new-comment-block">
-        <form action="@{/}" method="POST">
-                        <textarea class="new-comment-field" name="tfComment" cols="70" rows="3"
-                                  placeholder="Pasidalink savo nuomone..."></textarea>
-
-            <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-ok.svg}" alt=""></button>
-            <button type="reset" class="btn-l"><img class="btn-l-img" th:src="@{img/ui/btn-cancel.svg}" alt=""></button>
-        </form>
-    </div>
+<!--    <p th:text="${post.id}"></p>-->
+<!--    <p th:text="${post.title}"></p>-->
+<!--    <p th:text="${__${post.id}__}"></p>-->
+<!--    <p th:text="${post}"></p>-->
+<!--    <p th:text="${post.comments}"></p>-->
+<!--    <p th:text="${list}"></p>-->
+<!--    <p th:text="${#lists.sort(list)}"></p>-->
 
     <div class="comments-feed" th:each="comment: *{comments}">
         <div class="comment">
@@ -75,12 +75,12 @@
                     totam in
                     sint beatae velit. Odio et officiis error dolorum, quisquam, nisi dolores voluptate
                     veniam maiores iure dolorem.</p>
-
             </div>
-            <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-edit.svg}" alt=""></a>
-            <a href="#"><img class="btn-xs" th:src="@{img/ui/btn-delete.svg}" alt=""></a>
-
+            <th:block sec:authorize="isAuthenticated()" th:if="${user.id} == ${comment.user.id}">
+                <a href="#"><img class="btn-xs" th:src="@{/img/ui/btn-edit.svg}" alt=""></a>
+                <a th:href="'/post/comment/' + ${comment.id} + '/delete'"><img class="btn-xs"
+                                                                         th:src="@{/img/ui/btn-delete.svg}" alt=""></a>
+            </th:block>
         </div>
     </div>
 </th:block>
-<!--/* ####################################################################### */-->

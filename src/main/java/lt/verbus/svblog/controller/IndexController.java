@@ -31,17 +31,5 @@ public class IndexController extends DefaultController {
         return "index";
     }
 
-    @GetMapping("/compose")
-    public String compose(Model model) {
-        model.addAttribute("post", new Post());
-        return "compose";
-    }
-
-    @PostMapping("/compose")
-    public String publish(@ModelAttribute("post") Post post, Model model) {
-        postService.save(post);
-        return "redirect:/index";
-    }
-
 
 }

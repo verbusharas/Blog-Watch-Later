@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="bt-compose (url)" th:assert="${!#strings.isEmpty(url)}">
+<th:block th:fragment="create (url)" th:assert="${!#strings.isEmpty(url)}">
     <a th:href="${url}">
         <img class="btn-lg" src="/img/ui/btn-new-post.svg" alt="">
     </a>

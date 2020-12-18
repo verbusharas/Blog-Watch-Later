@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
-<section th:fragment="post-compose-form (post)" class="post-compose-parent nudge-up">
+<section th:fragment="post-compose (post)" class="post-compose-parent nudge-up">
     <article class="post-compose-form">
         <h3 class="info">NAUJA REKOMENDACIJA:</h3>
         <form th:action="@{/compose}" method="POST" th:object="${__${post}__}">
@@ -40,3 +40,16 @@
         <img class="post-image" src="/img/media/no-image.png" alt="Image Location">
     </div>
 </section>
+
+<th:block th:fragment="comment-compose">
+    <div>
+        <form th:action="@{/post/comment}" method="POST" class="new-comment-block" th:object="${comment}">
+            <textarea class="new-comment-field" name="tfComment" cols="70" rows="3"
+                      placeholder="Pasidalink savo nuomone..." th:field="*{message}"></textarea>
+
+            <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
+            <button type="reset" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}" alt="">
+            </button>
+        </form>
+    </div>
+</th:block>

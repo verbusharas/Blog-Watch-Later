@@ -21,7 +21,7 @@ public class UserControllerPrivate extends DefaultController {
     @GetMapping
     public String getAllUsers(Model model){
         model.addAttribute("users", userService.getAll());
-        return "users";
+        return "user/list";
     }
 
 }

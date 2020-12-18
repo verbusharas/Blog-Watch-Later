@@ -25,13 +25,13 @@ public class UserController extends DefaultController {
     @GetMapping("/register")
     public String getUserRegistrationForm(Model model){
         model.addAttribute("user", new User());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/register")
     public String registerNewUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "user/register";
         }
         userService.save(user);
         return "redirect:/private/user";

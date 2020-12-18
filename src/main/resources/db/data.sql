@@ -4,7 +4,7 @@ VALUES (1, 'Whisper', 'App',
         'https://icdn6.digitaltrends.com/image/digitaltrends/whisper-secret-768x768.jpg',
         '2020-12-10 10:13',
         '2020-12-10 10:13'),
-       (2, 'Vox', 'Youtube Channel',
+       (2, 'Voxy', 'Youtube Channel',
         'Pellentesque ultrices at sem quis sollicitudin. Cras fermentum placerat metus nec aliquet. Curabitur hendrerit varius auctor. Curabitur diam felis, egestas nec mi in, dignissim suscipit elit. Cras quam felis, commodo ac cursus vel, accumsan ut nunc. Aenean at sem augue. Praesent non ultrices velit. Quisque enim sem, consectetur vel libero sed, placerat venenatis lacus. Morbi eu urna eu justo sagittis tempus auctor vitae nibh. Maecenas hendrerit sit amet metus vel venenatis. Vivamus sit amet lorem ut nunc sagittis ultrices in in neque. Aenean nulla nisl, tincidunt sed fringilla eu, rhoncus vel neque. Nunc quis ex at nisi imperdiet accumsan eget nec mi. Suspendisse potenti. Phasellus enim leo, accumsan et metus convallis, molestie ultrices tortor.',
         'https://cdn.vox-cdn.com/thumbor/jzp6Qx96UVwgflZvRTBnapUAEM0=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/18980610/crossword_yellow__1_.jpg',
         '2020-12-11 14:03',
@@ -47,7 +47,7 @@ VALUES (1, 1),
        (2, 4);
 
 
-INSERT INTO comment (id, post_id, user_id, body, creation_time_stamp, update_time_stamp)
+INSERT INTO comment (id, post_id, user_id, message, creation_time_stamp, update_time_stamp)
 VALUES (1, 1, 2,
         'I see you have something to talk about. Well, I have something to shout about. Infact something to sing about. But I''ll just keep quiet and let you carry on.',
         '2020-12-10 10:20',
@@ -89,29 +89,29 @@ VALUES (1, 1, 2,
         '2020-12-14 23:59',
         '2020-12-14 23:59');
 
-INSERT INTO user_comments (comments_id, user_id)
-VALUES (1, 2),
-       (2, 3),
-       (3, 2),
-       (4, 4),
-       (5, 4),
-       (6, 1),
-       (7, 4),
-       (8, 3),
-       (9, 2),
-       (10, 2);
-
-INSERT INTO post_comments (comments_id, post_id)
-VALUES (1, 1),
-       (2, 1),
-       (3, 1),
-       (4, 1),
-       (5, 2),
-       (6, 2),
-       (7, 2),
-       (8, 3),
-       (9, 3),
-       (10, 4);
+-- INSERT INTO user_comments (comments_id, user_id)
+-- VALUES (1, 2),
+--        (2, 3),
+--        (3, 2),
+--        (4, 4),
+--        (5, 4),
+--        (6, 1),
+--        (7, 4),
+--        (8, 3),
+--        (9, 2),
+--        (10, 2);
+--
+-- INSERT INTO post_comments (comments_id, post_id)
+-- VALUES (1, 1),
+--        (2, 1),
+--        (3, 1),
+--        (4, 1),
+--        (5, 2),
+--        (6, 2),
+--        (7, 2),
+--        (8, 3),
+--        (9, 3),
+--        (10, 4);
 
 
 
