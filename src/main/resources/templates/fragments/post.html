@@ -1,14 +1,19 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<!--/* ---------------------------POST :: BODY--------------------------------------------------- */-->
 <th:block th:fragment="body (state)">
-    <!--/* --------------- ADMIN ----------------- */-->
+    <!--/* ------ ADMIN --- */-->
     <div class="post-modify">
         <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
         <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
     </div>
-    <!--/* --------------------------------------- */-->
-    <div class="post-texts-block">  <!--/* TEXTUAL SEGMENT (WITHOUT ILLUSTRATION) */-->
-        <div> <!--/* ENTITY CONTAINER */-->
-            <div class="post-header">  <!--/* entity.METADATA HEADER */-->
+
+    <!--/* TEXTUAL SEGMENT */-->
+    <div class="post-texts-block">
+        <!--/* POST ENTITY */-->
+        <div>
+            <!--/* METADATA */-->
+            <div class="post-header">
                 <p class="post-header-date"
                    th:text="'REKOMENDUOTA: ' + ${#temporals.format(post.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">
                     REKOMENDUOTA:
@@ -16,14 +21,16 @@
                 <h2 class="post-header-title" th:text="*{title}">TITLE OF RECOMMENDATION</h2>
                 <span class="post-header-tag" th:text="*{type}">TYPE TAG</span>
             </div>
-            <div class="post-body"> <!--/* entity.BODY WITH EXPAND CONTROL */-->
-
+            <!--/* BODY */-->
+            <div class="post-body">
+                <!--/* IN CASE EXPANDED */-->
                 <th:block th:if="${state}=='expanded'">
                     <p class="post-text columns" th:text="*{body} ">Post text body block.</p>
                     <div class="btn-expand-control to-row-end">
                         <a th:href="@{/}" th:text="'SUSKLEISTII'">SUSKLEISTI</a>
                     </div>
                 </th:block>
+                <!--/* IN CASE COLLAPSED */-->
                 <th:block th:unless="${state}=='expanded'">
                     <p class="post-text" th:text="*{body.length} > 300 ? *{body.substring(0,300)} + '...' : *{body}">
                         Post text body block.</p>
@@ -33,7 +40,8 @@
                 </th:block>
             </div>
         </div>
-        <div class="post-footer"> <!--/* LIKE AND COMMENT BUTTON FOOTER */-->
+        <!--/* LIKE AND COMMENT BUTTON FOOTER */-->
+        <div class="post-footer">
             <div class="post-footer-child">
                 <a href="#">
                     <img class="btn-s" src="/img/ui/btn-agree-inactive.svg" alt=""></a>
@@ -47,33 +55,61 @@
             </div>
         </div>
     </div>
-    <div> <!--/* ILLUSTRATION SEGMENT */-->
+    <!--/* ILLUSTRATION SEGMENT */-->
+    <div>
         <img class="post-image" th:src="*{imageUrl}" alt="Illustration">
     </div>
 </th:block>
 
-<th:block th:fragment="comments">
-<!--    #{selection.__${sel.code}__}-->
-    <div class="comments-feed" th:each="comment: *{comments}">
-        <div class="comment">
-            <img class="comment-image" th:src="${comment.user.avatarUrl}" alt="">
-            <div class="commment-header">
 
-                <p class="comment-date" th:text="${#temporals.format(comment.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">
-                    2020-12-05 18:11</p>
-                <p class="comment-author" th:text="${comment.user.nickname}">Bitė Vilimaitė</p>
-            </div>
-            <div class="comment-body">
-                <p th:text="${comment}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, ex vel sunt
-                    totam in
-                    sint beatae velit. Odio et officiis error dolorum, quisquam, nisi dolores voluptate
-                    veniam maiores iure dolorem.</p>
-            </div>
-            <th:block sec:authorize="isAuthenticated()" th:if="${user.id} == ${comment.user.id}">
-                <a href="#"><img class="btn-xs" th:src="@{/img/ui/btn-edit.svg}" alt=""></a>
-                <a th:href="'/post/comment/' + ${comment.id} + '/delete'"><img class="btn-xs"
-                                                                         th:src="@{/img/ui/btn-delete.svg}" alt=""></a>
-            </th:block>
-        </div>
+<!--/* ---------------------------POST :: COMMENT--------------------------------------------------- */-->
+<th:block th:fragment="comment (isEditable)" th:with="createdAt = *{creationTimeStamp}">
+    <img class="comment-image" th:src="*{user.avatarUrl}" alt="">
+    <div class="commment-header">
+        <p class="comment-date" th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm')}">
+            2020-12-05 18:11</p>
+        <p class="comment-author" th:text="*{user.nickname}">Bitė Vilimaitė</p>
     </div>
+    <div class="comment-body w98">
+
+        <!--/*    FORM FOR EDITABLE COMMENT */-->
+        <th:block th:if="${isEditable}">
+            <form th:action="@{/post/comment/edit}"
+                  sec:authorize="isAuthenticated()"
+                  th:if="${user.id} == *{user.id}"
+                  th:object="${editableComment}"
+                  class="to-row"
+                  method="POST">
+        <textarea
+                class="new-comment-field w98"
+                name="tfEdit"
+                cols="150"
+                rows="2"
+                th:text="*{message}"
+                th:field="*{message}">
+        </textarea>
+                <input type="hidden" th:field="${editableComment.id}" th:value="${editableComment.id}">
+                <button type="submit" class="btn-l">
+                    <img class="btn-xs" th:src="@{/img/ui/btn-ok.svg}" alt="">
+                </button>
+            </form>
+        </th:block>
+
+        <!--/*   TEXT FOR OTHER COMMENTS */-->
+        <div class="to-row-spaced w98" th:unless="${isEditable}">
+            <p class="flex" th:text="*{message}">
+                Comment text goes here
+            </p>
+            <div class="to-row" sec:authorize="isAuthenticated()" th:if="${user.id} == *{user.id}">
+                <a class="flex" th:href="'/post/comment/' + *{id} + '/edit'"><img class="btn-xs"
+                                                                                  th:src="@{/img/ui/btn-edit.svg}"
+                                                                                  alt=""></a>
+                <a class="flex" th:href="'/post/comment/' + *{id} + '/delete'"><img class="btn-xs"
+                                                                                    th:src="@{/img/ui/btn-delete.svg}"
+                                                                                    alt=""></a>
+            </div>
+        </div>
+
+    </div>
+
 </th:block>
