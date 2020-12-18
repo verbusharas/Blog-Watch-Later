@@ -26,4 +26,10 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
+    public Comment update(Comment editedComment){
+        Comment originalComment = getCommentById(editedComment.getId());
+        originalComment.setMessage(editedComment.getMessage());
+        return commentRepository.save(originalComment);
+    }
+
 }
