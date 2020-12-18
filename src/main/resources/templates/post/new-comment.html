@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"></head>
+
+<body>
+<div class="parent-container">
+    <!--/*    MAIN MENU BANNER */-->
+    <header th:replace="fragments/layout :: header"></header>
+    <!--/*  ADMIN "+" BUTTON */-->
+    <a th:replace="fragments/button :: create (url='/post/compose')"></a>
+    <main>
+        <!--/*    RENDER ACTIVATED POST AS EXPANDED */-->
+        <article class="post to-column expanded nudge-up-10" tabindex="0">
+            <div class="post-content-section"
+                 th:insert="fragments/post :: body (state='expanded')"
+                 th:object="${post}">
+            </div>
+            <!--/*    NEW COMMENT FIELD */-->
+            <div class="comments-section expanded" th:insert="fragments/form :: comment-compose" th:object="${newComment}">
+            </div>
+            <!--/*    RENDER EXISTING COMMENTS */-->
+            <div class="comments-feed">
+                <th:block th:each="comment: ${post.comments}">
+                    <div class="comment" th:insert="fragments/post :: comment (isEditable=false)" th:object="${comment}"></div>
+                </th:block>
+            </div>
+        </article>
+        <!--/*    RENDER THE REST OF THE POSTS AS COLLAPSED */-->
+        <th:block th:unless="${otherPosts.empty}" th:each="post: ${otherPosts}">
+            <article class="post to-column">
+                <div class="post-content-section"
+                     th:insert="fragments/post :: body (state='collapsed')"
+                     th:object="${post}">
+                </div>
+            </article>
+        </th:block>
+    </main>
+</div>
+<!--/*    SCROLL & FOCUS ON NEW COMMENT FIELD */-->
+<script type="text/javascript" th:src="@{/js/new-comment.js}"></script>
+</body>
+</html>
