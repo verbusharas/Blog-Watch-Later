@@ -6,8 +6,12 @@
   display: none;
 }
 
-.nudge-up {
-  margin-top: 0px;
+.nudge-up-10 {
+  margin-top: -10px;
+}
+
+.nudge-up-40 {
+  margin-top: -40px;
 }
 
 .nudge-left {
