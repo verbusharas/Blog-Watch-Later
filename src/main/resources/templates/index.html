@@ -3,14 +3,15 @@
 <head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
 <body>
 <div class="parent-container">
-    <!--    MAIN MENU BANNER-->
-    <header th:replace="fragments/layout :: header"/>
-    <!--   ADMIN "+" BUTTON-->
-    <a th:replace="fragments/button :: create (url='/compose')"/>
+    <!--/*    MAIN MENU BANNER */-->
+    <header th:replace="fragments/layout :: header"></header>
+    <!--/*  ADMIN "+" BUTTON */-->
+    <a th:replace="fragments/button :: create (url='/post/compose')"></a>
     <main class="nudge-up-40">
         <th:block th:if="${posts.empty}">
-            <p>Postukų nėra</p>
+            <p>Kol kas jokių rekomendacijų nėra :(</p>
         </th:block>
+        <!--/*    RENDER ALL POSTS AS EXPANDED */-->
         <th:block th:unless="${posts.empty}" th:each="post: ${posts}">
             <article class="post to-column">
                 <div class="post-content-section" th:insert="fragments/post :: body (state='collapsed')"
@@ -18,11 +19,8 @@
                 </div>
             </article>
         </th:block>
-
         </th:block>
-
     </main>
 </div>
-<!--<script type="text/javascript" th:src="@{/js/script.js}"></script>-->
 </body>
 </html>
