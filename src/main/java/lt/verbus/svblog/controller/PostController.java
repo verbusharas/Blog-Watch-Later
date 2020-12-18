@@ -38,13 +38,14 @@ public class PostController extends DefaultController {
 
     @GetMapping("/compose")
     public String compose(Model model) {
-        model.addAttribute("post", new Post());
-        return "composeEarly";
+        model.addAttribute("newPost", new Post());
+        model.addAttribute("posts", postService.getAll());
+        return "post/compose";
     }
 
     @PostMapping("/compose")
-    public String publish(@ModelAttribute("post") Post post, Model model) {
-        postService.save(post);
+    public String publish(@ModelAttribute("newPost") Post newPost, Model model) {
+        postService.save(newPost);
         return "redirect:/index";
     }
 
@@ -59,8 +60,8 @@ public class PostController extends DefaultController {
     public String getSinglePostComments(@PathVariable Long id, Model model) {
         model.addAttribute("post", postService.getPostById(id));
         model.addAttribute("otherPosts", postService.getAllExcept(id));
-        model.addAttribute("comment", new Comment());
-        return "post/comment";
+        model.addAttribute("newComment", new Comment());
+        return "post/new-comment";
     }
 
     @PostMapping("/comment")
@@ -81,6 +82,21 @@ public class PostController extends DefaultController {
                                 Model model) {
         commentService.deleteComment(commentService.getCommentById(commentId));
         return "redirect:/post/" + post.getId() + "/comment";
+    }
+
+    @GetMapping("/comment/{commentId}/edit")
+    public String makeCommentEditable(@PathVariable Long commentId,
+                                      @ModelAttribute("post") Post post,
+                                      Model model) {
+        model.addAttribute("otherPosts", postService.getAllExcept(post.getId()));
+        model.addAttribute("editableComment", commentService.getCommentById(commentId));
+        return "post/edit-comment";
+    }
+
+    @PostMapping("/comment/edit")
+    public String updateComment(@ModelAttribute Comment editedComment, Model model) {
+        Comment comment = commentService.update(editedComment);
+        return "redirect:/post/" + comment.getPost().getId() + "/comment";
     }
 
 
