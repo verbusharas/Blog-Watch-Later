@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -26,8 +27,7 @@ public class IndexController extends DefaultController {
 
     @GetMapping({"", "/", "index", "index.html"})
     public String renderHome(Model model) {
-        List<Post> posts = postService.getAll();
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.getAll());
         return "index";
     }
 
