@@ -53,14 +53,7 @@
 </th:block>
 
 <th:block th:fragment="comments">
-<!--    <p th:text="${post.id}"></p>-->
-<!--    <p th:text="${post.title}"></p>-->
-<!--    <p th:text="${__${post.id}__}"></p>-->
-<!--    <p th:text="${post}"></p>-->
-<!--    <p th:text="${post.comments}"></p>-->
-<!--    <p th:text="${list}"></p>-->
-<!--    <p th:text="${#lists.sort(list)}"></p>-->
-
+<!--    #{selection.__${sel.code}__}-->
     <div class="comments-feed" th:each="comment: *{comments}">
         <div class="comment">
             <img class="comment-image" th:src="${comment.user.avatarUrl}" alt="">

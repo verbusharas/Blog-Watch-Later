@@ -7,7 +7,7 @@
     <header th:replace="fragments/layout :: header"/>
     <!--   ADMIN "+" BUTTON-->
     <a th:replace="fragments/button :: create (url='/compose')"/>
-    <main>
+    <main class="nudge-up-40">
         <th:block th:if="${posts.empty}">
             <p>Postukų nėra</p>
         </th:block>

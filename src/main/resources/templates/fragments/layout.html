@@ -44,8 +44,7 @@
     </div>
     <div class="user-profile-select">
         <i class="far fa-user"></i>
-        <a href="#" sec:authorize="isAuthenticated()" th:text="${user.username}">sarunas@verbus.lt</a>
-        <p sec:authorize="isAuthenticated()" th:text="${user.nickname}">explicito</p>
+        <a sec:authorize="isAuthenticated()" th:text="${user.nickname}">explicito</a>
         <p sec:authorize="!isAuthenticated()" th:text="'Neprisijungęs Svečias'">Neprisijungęs Svečias</p>
 
 <!--        <a href="#" sec:authorize="!isAuthenticated()" th:text="${#authentication.nickname}">nickname: explicito</a>-->
