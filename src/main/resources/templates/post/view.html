@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"></head>
 <body>
 <div class="parent-container">
-    <!--    MAIN MENU BANNER-->
-    <header th:replace="fragments/layout :: header"/>
-    <!--   ADMIN "+" BUTTON-->
-    <a th:replace="fragments/button :: create (url='/post/compose')"/>
+    <!--/*    MAIN MENU BANNER */-->
+    <header th:replace="fragments/layout :: header"></header>
+    <!--/*  ADMIN "+" BUTTON */-->
+    <a th:replace="fragments/button :: create (url='/post/compose')"></a>
     <main>
-        <!--    RENDER ACTIVATED POST AS EXPANDED -->
+        <!--/*    RENDER ACTIVATED POST AS EXPANDED */-->
         <article class="post to-column expanded nudge-up-10">
             <div class="post-content-section" th:insert="fragments/post :: body (state='expanded')"
                  th:object="${post}">
             </div>
         </article>
-        <!--    RENDER THE REST OF THE POSTS AS COLLAPSED -->
+        <!--/*    RENDER THE REST OF THE POSTS AS COLLAPSED */-->
         <th:block th:unless="${otherPosts.empty}" th:each="post: ${otherPosts}">
             <article class="post to-column">
                 <div class="post-content-section" th:insert="fragments/post :: body (state='collapsed')"
