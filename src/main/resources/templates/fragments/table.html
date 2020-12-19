@@ -7,7 +7,17 @@
     <td th:text="*{nickname}">Admin</td>
     <td th:text="*{comments.size}">36</td>
     <td th:text="*{roles}">ADMIN</td>
-    <td>-</td>
+    <td>
+        <a th:href="'/user/' + *{id} + '/promote'" th:unless="*{roles[0].toString} == 'ADMIN'">
+            <img class="btn-xs" th:src="@{/img/ui/btn-promote.svg}">
+        </a>
+        <a th:href="'/user/' + *{id} + '/demote'" th:unless="*{roles[0].toString} == 'USER'">
+            <img class="btn-xs" th:src="@{/img/ui/btn-demote.svg}">
+        </a>
+        <a th:href="'/user/' + *{id} + '/delete'" th:unless="*{roles[0].toString} == 'ADMIN'">
+            <img class="btn-xs" th:src="@{/img/ui/btn-delete.svg}">
+        </a>
+    </td>
 </th:block>
 
 <th:block th:fragment="user-header-row">

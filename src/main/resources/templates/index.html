@@ -11,9 +11,9 @@
         <th:block th:if="${posts.empty}">
             <p>Kol kas jokių rekomendacijų nėra :(</p>
         </th:block>
-        <!--/*    RENDER ALL POSTS AS EXPANDED */-->
+        <!--/*    RENDER ALL POSTS AS COLLAPSED */-->
         <th:block th:unless="${posts.empty}" th:each="post: ${posts}">
-            <article class="post to-column">
+            <article class="post to-column shadow">
                 <div class="post-content-section" th:insert="fragments/post :: body (state='collapsed')"
                      th:object="${post}">
                 </div>

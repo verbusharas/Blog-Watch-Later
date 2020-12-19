@@ -4,8 +4,8 @@
 <th:block th:fragment="body (state)">
     <!--/* ------ ADMIN --- */-->
     <div class="post-modify">
-        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
-        <a href="#" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
+        <a th:href="'/post/' + *{id} + '/edit'" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
+        <a th:href="'/post/' + *{id} + '/delete'" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
     </div>
 
     <!--/* TEXTUAL SEGMENT */-->

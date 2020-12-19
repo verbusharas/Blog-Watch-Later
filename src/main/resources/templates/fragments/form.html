@@ -1,43 +1,88 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!--/*    NEW POST FORM */-->
-<section th:fragment="post-compose" class="post-compose-parent nudge-up">
-    <article class="post-compose-form">
-        <h3 class="info">NAUJA REKOMENDACIJA:</h3>
-        <form th:action="@{/post/compose}" method="POST" th:object="${newPost}">
-            <div class="to-row">
-                <div class="form-column w20">
-                    <p class="label">PAVADINIMAS:</p>
-                    <p class="label">TIPAS:</p>
-                    <p class="label">ILIUSTRACIJOS URL:</p>
-                    <p class="label">APRAŠYMAS:</p>
-                    <p class="error not-displayed">Aprašymą turi sudaryti bent 5 simboliai! ►</p>
-                </div>
-
-                <div class="form-column w80">
-                    <input class="input w50" type="text" id="tfTitle" placeholder="Pvz. Game Of Thrones" th:field="*{title}">
-                    <span class="error not-displayed">◄ Negali būti tuščias!</span>
-
-                    <input class="input w50" type="text" id="tfType" placeholder="Pvz. HBO serialas" th:field="*{type}">
-                    <span class="error not-displayed">◄ Negali būti tuščias!</span>
-
-                    <input class="input w98" type="text" id="tfImageUrl"
-                           placeholder="Pvz. https://www.google.lt/logo.jpg" th:field="*{imageUrl}">
-
-                    <textarea class="input w98" type="text" rows="10" th:field="*{body}"></textarea>
-                </div>
-
-                <div class="to-column-bottom">
-                    <a href="/index" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}"></a>
-                    <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
-                </div>
+<section th:fragment="post-compose" class="post-compose-parent shadow">
+    <div class="to-column">
+        <div class="to-row">
+            <article class="post-compose-form">
+                <h3 class="info">NAUJA REKOMENDACIJA:</h3>
+                <form th:action="@{/post/compose}" method="POST" th:object="${newPost}">
+                    <div class="to-row">
+                        <div class="form-column w20">
+                            <p class="label">PAVADINIMAS:</p>
+                            <p class="label">TIPAS:</p>
+                            <p class="label">ILIUSTRACIJOS URL:</p>
+                            <p class="label">APRAŠYMAS:</p>
+                            <p class="error not-displayed">Aprašymą turi sudaryti bent 5 simboliai! ►</p>
+                        </div>
+                        <div class="form-column w80">
+                            <input class="input w50" type="text" id="tfTitle" placeholder="Pvz. Game Of Thrones" th:field="*{title}">
+                            <input class="input w50" type="text" id="tfType" placeholder="Pvz. HBO serialas" th:field="*{type}">
+                            <input class="input w98" type="text" id="tfImageUrl" placeholder="Pvz. https://www.google.lt/logo.jpg" th:field="*{imageUrl}">
+                            <textarea class="input w98" type="text" rows="10" th:field="*{body}"></textarea>
+                        </div>
+                        <div class="to-column-bottom">
+                            <a href="/index" class="btn-l"><img class="btn-l-img"th:src="@{/img/ui/btn-cancel.svg}"></a>
+                            <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
+                        </div>
+                    </div>
+                    <div class="errors">
+                        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error">KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error">KLAIDA: Tipas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
+                    </div>
+                </form>
+            </article>
+            <div class="post-image-container">
+                <img class="post-image" src="/img/media/no-image.png" alt="Image Location">
             </div>
-        </form>
-    </article>
-    <div class="post-image-container">
-        <img class="post-image" src="/img/media/no-image.png" alt="Image Location">
+        </div>
     </div>
 </section>
+
+<!--/*    EDIT POST FORM */-->
+<section th:fragment="post-edit" class="post-compose-parent shadow">
+    <div class="to-column">
+        <div class="to-row">
+            <article class="post-compose-form">
+                <h3 class="info">REKOMENDACIJOS REDAGAVIMAS:</h3>
+                <form th:action="@{/post/edit}" method="POST" th:object="${editablePost}">
+                    <div class="to-row">
+                        <div class="form-column w20">
+                            <p class="label">PAVADINIMAS:</p>
+                            <p class="label">TIPAS:</p>
+                            <p class="label">ILIUSTRACIJOS URL:</p>
+                            <p class="label">APRAŠYMAS:</p>
+                            <p class="error not-displayed">Aprašymą turi sudaryti bent 5 simboliai! ►</p>
+                        </div>
+                        <div class="form-column w80">
+                            <input type="hidden" id="tfId" th:field="*{id}" th:value="*{id}">
+                            <input class="input w50" type="text" id="tfTitle" th:field="*{title}" th:value="*{title}">
+                            <input class="input w50" type="text" id="tfType"  th:field="*{type}" th:value="*{type}">
+                            <input class="input w98" type="text" id="tfImageUrl" th:field="*{imageUrl}" th:value="*{imageUrl}">
+                            <textarea class="input w98" type="text" rows="10" th:field="*{body}" th:text="*{body}"></textarea>
+                        </div>
+                        <div class="to-column-bottom">
+                            <a href="/index" class="btn-l"><img class="btn-l-img"th:src="@{/img/ui/btn-cancel.svg}"></a>
+                            <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
+                        </div>
+                    </div>
+                    <div class="errors">
+                        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error">KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error">KLAIDA: Tipas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
+                    </div>
+                </form>
+            </article>
+            <div class="post-image-container" th:object="${editablePost}">
+                <img class="post-image" th:src="*{imageUrl}" alt="Image Location">
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!--/*    NEW COMMENT FORM */-->
 <th:block th:fragment="comment-compose">
@@ -51,3 +96,38 @@
         </form>
     </div>
 </th:block>
+
+<!--/*    NEW USER FORM */-->
+    <article th:fragment="user-register" class="post-compose-form w98">
+        <h3 class="info">VARTOTOJO REGISTRACIJA:</h3>
+        <form th:action="@{/user/register}" method="POST" th:object="${newUser}">
+            <div class="to-row-center">
+                <div class="form-column w35">
+                    <p class="label">EL.PAŠTAS*:</p>
+                    <p class="label">PSEUDONIMAS*:</p>
+                    <p class="label">SLAPTAŽODIS*:</p>
+                    <p class="label">SLAPTAŽODIS*:</p>
+                    <p class="label">AVATARO URL:</p>
+                </div>
+
+                <div class="form-column w50">
+                    <input th:field="*{username}" type="text" class="input w80" id="tfUsername">
+                    <input th:field="*{nickname}" type="text" class="input w80" id="tfNickname">
+                    <input th:field="*{password}" type="password" class="input w80" id="tfPassword">
+                    <input th:field="*{confirmPassword}" type="password" class="input w80" id="tfConfirmPassword">
+                    <input th:field="*{avatarUrl}" type="text" class="input w80" id="tfAvatarUrl">
+                </div>
+                <div class="form-column">
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error">KLAIDA: El. paštas negali būti tuščias!</span>
+                    <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="error">KLAIDA: Pseudonimas negali būti tuščias!</span>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">>KLAIDA: Slaptažodis negali būti tuščias!</span>
+                    <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error">>KLAIDA: Slaptažodis negali būti tuščias!</span>
+                    <span th:if="${#fields.hasErrors('avatarUrl')}" th:errors="*{avatarUrl}" class="error">>KLAIDA: Paveikslėlio URL negali būti tuščias!</span>
+                </div>
+                <div class="to-row">
+                    <button class="btn-l" type="submit"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
+                    <a th:href="@{/}" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}" alt=""></a>
+                </div>
+            </div>
+        </form>
+    </article>

@@ -6,13 +6,13 @@
             <!--    MAIN MENU BANNER-->
                 <header th:replace="fragments/layout :: header"/>
                 <main>
-                    <table class="table">
+                    <table class="table shadow">
                         <thead>
                         <tr th:include="fragments/table :: user-header-row"></tr>
                         </thead>
                         <tbody th:if="${users.empty}">Vartotojų nėra</tbody>
                         <tbody th:if="${not users.empty}" th:each="user: ${users}">
-                        <tr th:include="fragments/table :: user-entity-row-row" th:object="${user}"></tr>
+                        <tr th:include="fragments/table :: user-entity-row" th:object="${user}"></tr>
                         </tbody>
                     </table>
                 </main>

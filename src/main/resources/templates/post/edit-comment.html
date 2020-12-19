@@ -10,7 +10,7 @@
     <a th:replace="fragments/button :: create (url='/post/compose')"></a>
     <main>
         <!--/*    RENDER ACTIVATED POST AS EXPANDED */-->
-        <article class="post to-column expanded nudge-up-10" tabindex="0">
+        <article class="post to-column shadow expanded nudge-up-10" tabindex="0">
             <div class="post-content-section"
                  th:insert="fragments/post :: body (state='expanded')"
                  th:object="${post}">
@@ -36,7 +36,7 @@
         </article>
         <!--/*    RENDER THE REST OF THE POSTS AS COLLAPSED */-->
         <th:block th:unless="${otherPosts.empty}" th:each="post: ${otherPosts}">
-            <article class="post to-column">
+            <article class="post to-column shadow">
                 <div class="post-content-section"
                      th:insert="fragments/post :: body (state='collapsed')"
                      th:object="${post}">
