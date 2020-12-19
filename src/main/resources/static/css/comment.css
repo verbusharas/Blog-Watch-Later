@@ -39,6 +39,13 @@
     font-family: "Montserrat", sans-serif;
   }
 
+.new-comment-for-guest{
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    background-color: var(--light-blue);
+}
+
 .comment{
     display: flex;
     align-items: center;

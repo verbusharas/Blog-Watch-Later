@@ -5,12 +5,28 @@
   color: var(--pink);
 }
 
+.warning {
+  font-size: 10pt;
+  color: var(--blue);
+}
+
+.errors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--very-light-grey);
+}
+
 .error {
+  display: flex;
+  width: 50%;
+  justify-content: left;
   font-size: 10pt;
   font-weight: 400;
-  margin: 10px;
-  color: var(--pink);
-  text-align: right;
+  margin: 5px;
+  padding: 5px;
+  color: var(--blue);
+  background-color: var(--light-blue);
 }
 
 .label {
@@ -75,6 +91,19 @@
   outline: none;
 }
 
+.btn-disable {
+  pointer-events: none;
+  cursor: default;
+  filter: grayscale(100%);
+}
+
+.btn-authenticate {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: small;
+}
+
+
 .post-compose-parent {
   background-color: var(--light-grey);
   width: 100%;
@@ -98,8 +127,7 @@
 
 .input {
   display: flexbox;
-  margin: 10px;
-  margin-bottom: 0;
+  margin: 10px 10px 0;
   border: none;
 }
 
