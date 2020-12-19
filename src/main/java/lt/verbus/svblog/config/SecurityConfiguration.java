@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @Profile("test")
@@ -27,7 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                    .antMatchers("/sign-in", "/public/**", "/img/**").permitAll()
+                    .antMatchers("/sign-in", "/", "/post/**", "/img/**", "/user/register").permitAll()
+                    .antMatchers("/private/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -36,12 +38,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/sign-in")
                     .usernameParameter("user")
                     .passwordParameter("pass")
-                    .failureUrl("/sign-in?error=true")
+                    .failureUrl("/sign-in-error")
                     .defaultSuccessUrl("/")
                     .and()
                 .logout()
                     .logoutUrl("/sign-out")
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                    .and()
+                    .exceptionHandling()
+                    .accessDeniedHandler(accessDeniedHandler());;
     }
 
     @Override
@@ -53,6 +58,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder encoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
     }
 
 }
