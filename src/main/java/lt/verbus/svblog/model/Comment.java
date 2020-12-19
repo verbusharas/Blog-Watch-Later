@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
@@ -32,6 +34,7 @@ public class Comment implements Comparable<Comment>{
     @UpdateTimestamp
     private LocalDateTime updateTimeStamp;
 
+    @NotBlank(message = "{comment.message.not.blank}")
     private String message;
 
     @Override
