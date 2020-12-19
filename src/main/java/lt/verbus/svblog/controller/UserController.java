@@ -1,8 +1,8 @@
 package lt.verbus.svblog.controller;
 
-import lt.verbus.svblog.model.Role;
 import lt.verbus.svblog.model.User;
 import lt.verbus.svblog.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/user")
@@ -40,22 +39,6 @@ public class UserController extends DefaultController {
         return "redirect:/private/user";
     }
 
-    @GetMapping("/{id}/promote")
-    public String promoteUser(@PathVariable Long id, Model model){
-        userService.promoteUserById(id);
-        return "redirect:/private/user";
-    }
 
-    @GetMapping("/{id}/demote")
-    public String demoteUser(@PathVariable Long id, Model model){
-        userService.demoteUserById(id);
-        return "redirect:/private/user";
-    }
-
-    @GetMapping("/{id}/delete")
-    public String deleteUser(@PathVariable Long id, Model model){
-        userService.deleteUserById(id);
-        return "redirect:/private/user";
-    }
 
 }
