@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--/*    NEW POST FORM */-->
 <section th:fragment="post-compose" class="post-compose-parent shadow">
@@ -87,10 +87,16 @@
 <!--/*    NEW COMMENT FORM */-->
 <th:block th:fragment="comment-compose">
     <div>
-        <form th:action="@{/post/comment}" method="POST" class="new-comment-block" th:object="${newComment}">
+        <div sec:authorize="isAnonymous()" class="new-comment-for-guest">
+            <p class="warning">Komentuoti gali tik registruoti vartotojai</p>
+            <a class="btn-authenticate" th:href="@{/user/register}">Registruotis</a>
+            <a class="btn-authenticate" th:href="@{/sign-in}">Prisijungti</a>
+        </div>
+
+        <form sec:authorize="isAuthenticated()" th:action="@{/post/comment/}" method="POST" class="new-comment-block" th:object="${newComment}">
             <textarea class="new-comment-field" name="tfComment" cols="70" rows="3"
                       placeholder="Pasidalink savo nuomone..." th:field="*{message}"></textarea>
-
+            <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="error">KLAIDA: Komentaras negali būti tuščias!</span>
             <button type="submit" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-ok.svg}" alt=""></button>
             </button>
         </form>

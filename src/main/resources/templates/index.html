@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
 <body>
 <div class="parent-container">
     <!--/*    MAIN MENU BANNER */-->
     <header th:replace="fragments/layout :: header"></header>
-    <!--/*  ADMIN "+" BUTTON */-->
-    <a th:replace="fragments/button :: create (url='/post/compose')"></a>
-    <main class="nudge-up-40">
+    <main>
         <th:block th:if="${posts.empty}">
             <p>Kol kas jokių rekomendacijų nėra :(</p>
         </th:block>
         <!--/*    RENDER ALL POSTS AS COLLAPSED */-->
         <th:block th:unless="${posts.empty}" th:each="post: ${posts}">
+
             <article class="post to-column shadow">
                 <div class="post-content-section" th:insert="fragments/post :: body (state='collapsed')"
                      th:object="${post}">

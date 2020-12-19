@@ -1,20 +1,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<header th:fragment="header">
-    <div class="header-title">
-        <a th:href="@{/}">
-            <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
-        </a>
-    </div>
+<th:block th:fragment="header">
+    <header>
+        <div class="header-title">
+            <a th:href="@{/}">
+                <img class="header-title-logo" th:src="@{/img/ui/logo.svg}" alt="Žiūrėti Vėliau">
+            </a>
+        </div>
 
-    <div class="header-body">
-        <nav>
-            <div th:replace="fragments/layout :: menu-navigation"/>
-            <div th:replace="fragments/layout :: menu-user"/>
-        </nav>
-        <div th:replace="fragments/layout :: menu-quote"/>
-    </div>
-</header>
+        <div class="header-body">
+            <nav>
+                <div th:replace="fragments/layout :: menu-navigation"/>
+                <div th:replace="fragments/layout :: menu-user"/>
+            </nav>
+            <div th:replace="fragments/layout :: menu-quote"/>
+        </div>
+    </header>
+    <!--/*  ADMIN "+" BUTTON */-->
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/button :: create (url='/post/compose')"></a>
+</th:block>
 
 <div th:fragment="menu-navigation" class="navigation">
     <p class="navigation-description">Įvairaus turinio rekomendacijos. Didžiausias vėlesnės veiklos
@@ -47,15 +51,16 @@
         <a sec:authorize="isAuthenticated()" th:text="${user.nickname}">explicito</a>
         <p sec:authorize="!isAuthenticated()" th:text="'Neprisijungęs Svečias'">Neprisijungęs Svečias</p>
 
-<!--        <a href="#" sec:authorize="!isAuthenticated()" th:text="${#authentication.nickname}">nickname: explicito</a>-->
+        <!--        <a href="#" sec:authorize="!isAuthenticated()" th:text="${#authentication.nickname}">nickname: explicito</a>-->
     </div>
     <form th:action="@{/sign-out}" method="POST">
         <button type="submit" sec:authorize="isAuthenticated()">
             <a class="logout">atsijungti</a>
         </button>
     </form>
-    <a class="logout" href="/private/user">VARTOTOJAI</a>
-    <a class="logout" href="/user/register">REGISTRACIJA</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" class="logout" href="/private/user">VARTOTOJAI</a>
+    <a sec:authorize="isAnonymous()" class="logout" href="/user/register">REGISTRUOTIS</a>
+    <a sec:authorize="isAnonymous()" class="logout" href="/sign-in">PRISIJUNGTI</a>
 </div>
 
 <div th:fragment="menu-quote" class="quote-container">

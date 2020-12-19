@@ -3,9 +3,9 @@
 <!--/* ---------------------------POST :: BODY--------------------------------------------------- */-->
 <th:block th:fragment="body (state)">
     <!--/* ------ ADMIN --- */-->
-    <div class="post-modify">
-        <a th:href="'/post/' + *{id} + '/edit'" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
-        <a th:href="'/post/' + *{id} + '/delete'" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="post-modify">
+        <a th:href="'/post/edit/' + *{id}" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-edit-admin.svg}" alt=""></a>
+        <a th:href="'/post/delete/' + *{id}" class="nudge-left"><img class="btn-m" th:src="@{/img/ui/btn-delete-admin.svg}" alt=""></a>
     </div>
 
     <!--/* TEXTUAL SEGMENT */-->
@@ -48,7 +48,7 @@
                 <span class="post-footer-text">6 PRITARIA</span>
             </div>
             <div class="post-footer-child">
-                <a th:href="@{/post/{id}/comment(id=*{id})}" class="bt-show-comments">
+                <a th:href="@{/post/comment/{id}(id=*{id})}" class="bt-show-comments">
                     <img class="icon-s" src="/img/ui/btn-comment.svg" alt="">
                     <span class="post-footer-text" th:text="*{comments.size} + ' KOMENTARAI'">7 KOMENTARAI</span>
                 </a>
@@ -100,14 +100,23 @@
             <p class="flex" th:text="*{message}">
                 Comment text goes here
             </p>
-            <div class="to-row" sec:authorize="isAuthenticated()" th:if="${user.id} == *{user.id}">
-                <a class="flex" th:href="'/post/comment/' + *{id} + '/edit'"><img class="btn-xs"
+            <div class="to-row" sec:authorize="hasRole('ROLE_USER')" th:if="${user.id} == *{user.id}">
+                <a class="flex" th:href="'/post/comment/edit/' + *{id}"><img class="btn-xs"
                                                                                   th:src="@{/img/ui/btn-edit.svg}"
                                                                                   alt=""></a>
-                <a class="flex" th:href="'/post/comment/' + *{id} + '/delete'"><img class="btn-xs"
+                <a class="flex" th:href="'/post/comment/delete/' + *{id}"><img class="btn-xs"
                                                                                     th:src="@{/img/ui/btn-delete.svg}"
                                                                                     alt=""></a>
             </div>
+            <div class="to-row" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:if="${user.id} == *{user.id}" class="flex" th:href="'/post/comment/edit/' + *{id}"><img class="btn-xs"
+                                                                             th:src="@{/img/ui/btn-edit.svg}"
+                                                                             alt=""></a>
+                <a class="flex" th:href="'/post/comment/delete/' + *{id}"><img class="btn-xs"
+                                                                               th:src="@{/img/ui/btn-delete.svg}"
+                                                                               alt=""></a>
+            </div>
+
         </div>
 
     </div>

@@ -5,9 +5,7 @@
 <div class="parent-container">
     <!--/*    MAIN MENU BANNER */-->
     <header th:replace="fragments/layout :: header"></header>
-    <!--/*  ADMIN "+" BUTTON */-->
-    <a th:replace="fragments/button :: create (url='/post/compose')"></a>
-    <main class="nudge-up-60">
+    <main>
         <!--/*    RENDER POST COMPOSE FORM */-->
         <section th:replace="fragments/form :: post-edit" th:object="${editablePost}"></section>
 
