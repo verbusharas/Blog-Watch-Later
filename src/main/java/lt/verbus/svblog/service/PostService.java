@@ -39,4 +39,17 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    public Post update(Post editedPost) {
+        Post originalPost = getPostById(editedPost.getId());
+        originalPost.setTitle(editedPost.getTitle());
+        originalPost.setType(editedPost.getType());
+        originalPost.setBody(editedPost.getBody());
+        originalPost.setImageUrl(editedPost.getImageUrl());
+        return postRepository.save(originalPost);
+    }
+
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
+
 }
