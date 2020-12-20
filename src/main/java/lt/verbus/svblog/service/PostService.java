@@ -31,6 +31,10 @@ public class PostService {
         return posts;
     }
 
+    public List<Post> getAllContainingType(String type){
+        return postRepository.findAllByTypeContains(type);
+    }
+
     public Post getPostById(Long id) {
         return postRepository.findById(id).orElseThrow(PostNotFoundException::new);
     }

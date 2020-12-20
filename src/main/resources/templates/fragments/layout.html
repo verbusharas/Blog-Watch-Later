@@ -25,16 +25,16 @@
         planavimo portalas šalyje.</p>
     <div class="navigation-menu">
         <div class="navigation-menu-items-primary">
-            <a href="#" th:text="#{header.menu.recommendations}">REKOMENDACIJOS</a>
-            <a href="#" th:text="#{header.menu.about}">APIE</a>
-            <a href="#" th:text="#{header.menu.donate}">PAREMK</a>
+            <a th:href="@{/}" th:text="#{header.menu.recommendations}">REKOMENDACIJOS</a>
+            <a th:href="@{/about}" th:text="#{header.menu.about}">APIE</a>
+            <a th:href="@{/donate}"  th:text="#{header.menu.donate}">PAREMK</a>
         </div>
         <div class="navigation-menu-items-secondary">
-            <a href="#" th:text="#{header.menu.podcasts}">TINKLALAIDĖS</a>
-            <a href="#" th:text="#{header.menu.movies}">FILMAI</a>
-            <a href="#" th:text="#{header.menu.series}">SERIALAI</a>
-            <a href="#" th:text="#{header.menu.games}">ŽAIDIMAI</a>
-            <a href="#" th:text="#{header.menu.apps}">PROGRAMĖLĖS</a>
+            <a th:href="@{/post/filter(type='podcast')}"  th:text="#{header.menu.podcasts}">TINKLALAIDĖS</a>
+            <a th:href="@{/post/filter(type='movie')}" th:text="#{header.menu.movies}">FILMAI</a>
+            <a th:href="@{/post/filter(type='series')}" th:text="#{header.menu.series}">SERIALAI</a>
+            <a th:href="@{/post/filter(type='game')}" th:text="#{header.menu.games}">ŽAIDIMAI</a>
+            <a th:href="@{/post/filter(type='app')}" th:text="#{header.menu.apps}">PROGRAMĖLĖS</a>
         </div>
     </div>
 </div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
@@ -26,7 +27,7 @@ public class PostController extends DefaultController {
         this.postService = postService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String goHome() {
         return "redirect:/";
     }
@@ -37,6 +38,14 @@ public class PostController extends DefaultController {
         model.addAttribute("otherPosts", postService.getAllExcept(id));
         return "post/view";
     }
+
+    @GetMapping("/filter")
+    public String filterByType(@RequestParam String type, Model model) {
+        model.addAttribute("type", type);
+        model.addAttribute("posts", postService.getAllContainingType(type));
+        return "post/filtered-feed";
+    }
+
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/compose")
