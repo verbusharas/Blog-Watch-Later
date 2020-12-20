@@ -27,11 +27,11 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     @SneakyThrows
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
-
+//        "passay.properties"
         //customizing validation messages
         Properties props = new Properties();
         InputStream inputStream = getClass()
-                .getClassLoader().getResourceAsStream("passay.properties");
+                .getClassLoader().getResourceAsStream("validationMessages.properties");
         props.load(inputStream);
         MessageResolver resolver = new PropertiesMessageResolver(props);
 
@@ -68,7 +68,9 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         }
 
         List<String> messages = validator.getMessages(result);
-        String messageTemplate = String.join(",", messages);
+//        messages.add(0, "{password.validator.prefix} ");
+        String joinedMessage = String.join(", ", messages);
+        String messageTemplate = "{password.validator.prefix}: " + joinedMessage;
         context.buildConstraintViolationWithTemplate(messageTemplate)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
