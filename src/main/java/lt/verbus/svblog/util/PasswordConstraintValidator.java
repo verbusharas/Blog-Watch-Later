@@ -3,12 +3,14 @@ package lt.verbus.svblog.util;
 import lt.verbus.svblog.annotation.ValidPassword;
 import lombok.SneakyThrows;
 import org.passay.*;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
 
@@ -29,9 +31,11 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     public boolean isValid(String password, ConstraintValidatorContext context) {
 //        "passay.properties"
         //customizing validation messages
+        String language = LocaleContextHolder.getLocale().getLanguage();
+        String propertiesFilename = language.equals("en") ? "validationMessages.properties" : "validationMessages_" + language +".properties";
         Properties props = new Properties();
         InputStream inputStream = getClass()
-                .getClassLoader().getResourceAsStream("validationMessages.properties");
+                .getClassLoader().getResourceAsStream(propertiesFilename);
         props.load(inputStream);
         MessageResolver resolver = new PropertiesMessageResolver(props);
 
