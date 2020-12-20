@@ -9,7 +9,6 @@ nav,
 
 header {
   background-color: var(--light-grey);
-  background-image: url("/img/ui/pattern-8.png");
   box-shadow: 0px 0px 15px #b8b8b8;
 }
 
@@ -28,10 +27,6 @@ header {
   width: 70px;
   margin-left: 40px;
   margin-top: -50px;
-}
-
-.btn-lg:hover {
-  opacity: 0.5;
 }
 
 .quote-text {
@@ -62,11 +57,12 @@ nav {
 }
 
 .navigation-menu {
-  background-image: url("/img/ui/menu-bg.svg");
-  background-position: center;
+  background-image: url("/img/ui/menu-bg-blue.svg");
+  background-position: 10px 0px;
   background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: initial;
-  padding: 25px 35px 35px 35px;
+  background-size: 500px;
+  padding: 35px;
+  height: 80px;
 }
 
 
@@ -81,7 +77,17 @@ nav {
   color: rgb(255, 255, 255);
 }
 
+.navigation-menu-items-primary a:hover {
+  color: white;
+  background-color: var(--blue);
+  border-radius: 50%;
+}
 
+.navigation-menu-items-secondary a:hover {
+  color: white;
+  background-color: var(--blue);
+  border-radius: 50%;
+}
 
 
 
@@ -111,6 +117,7 @@ nav {
 }
 
 
+
 a {
   text-decoration: none;
   color: black;
@@ -121,26 +128,79 @@ a:hover {
   color: var(--pink);
 }
 
-
-.navigation-menu-items-primary a:hover {
-  color:white;
-  opacity: 0.5;
-}
-
-.navigation-menu-items-secondary a:hover {
-  color: white;
-  opacity: 0.5;
-}
-
-.logout {
+.btn-lang-selected {
+  font-weight: 600;
   color: var(--pink);
 }
 
-.logout:hover {
-  opacity: 0.5;
+.user-profile-select {
+  margin: 5px;
+  margin-right: 0;
 }
+
+.authenticate-select {
+  margin: 5px;
+}
+
+.username {
+  font-size: small;
+  margin: 5px;
+  margin-right: 0;
+}
+
+.btn-user-menu {
+  color: var(--pink);
+  margin: 2px;
+}
+
+.btn-user-menu:hover{
+  color: var(--blue);
+}
+
+.btn-logout {
+  display: inline-flex;
+  color: var(--pink);
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-logout:hover {
+  color: var(--blue);
+}
+
 
 .highlight {
   color: var(--pink);
   font-weight: bold;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 9pt;
+  display: flex;
+margin: 2px;
+
+justify-content: center;
+
+}
+
+.page-name-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page-name{
+  display: flex;
+  background-color: var(--light-grey);
+padding: 2px;
+width: 300px;
+justify-content: center;
+justify-self: center;
+justify-items: center;
+align-items: center;
+align-content: center;
+align-self: center;
 }

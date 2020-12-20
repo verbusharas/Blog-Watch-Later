@@ -101,6 +101,10 @@
   width: 80%;
 }
 
+.w90 {
+  width: 90%;
+}
+
 .w98 {
   width: 98%;
 }
@@ -115,4 +119,9 @@
 
 .shadow {
   box-shadow: 0px 0px 15px #b8b8b8;
+}
+
+.side-margin-20 {
+  margin-left: 20px;
+  margin-right: 20px;
 }
