@@ -21,7 +21,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface PasswordValueMatch {
 
 
-    String message() default "Fields values don't match!";
+    String message() default "{user.register.passwords.dont.match}";
 
     Class<?>[] groups() default { };
 
