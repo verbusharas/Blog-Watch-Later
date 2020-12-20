@@ -21,11 +21,11 @@
 </th:block>
 
 <th:block th:fragment="user-header-row">
-    <th scope="col">ID</th>
-    <th scope="col">AVATARAS</th>
-    <th scope="col">EL. PAŠTAS</th>
-    <th scope="col">PSEUDONIMAS</th>
-    <th scope="col">KOMENTARŲ</th>
-    <th scope="col">ROLĖ</th>
-    <th scope="col">VEIKSMAI</th>
+    <th scope="col" th:text="#{user.table.header.id}">ID</th>
+    <th scope="col" th:text="#{user.table.header.avatar}">AVATARAS</th>
+    <th scope="col" th:text="#{user.table.header.username}">EL. PAŠTAS</th>
+    <th scope="col" th:text="#{user.table.header.nickname}">PSEUDONIMAS</th>
+    <th scope="col" th:text="#{user.table.header.comments}">KOMENTARŲ</th>
+    <th scope="col" th:text="#{user.table.header.role}">ROLĖ</th>
+    <th scope="col" th:text="#{user.table.header.actions}">VEIKSMAI</th>
 </th:block>

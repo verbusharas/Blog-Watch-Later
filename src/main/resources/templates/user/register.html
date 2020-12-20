@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/dependencies :: head (title='Naujo vartotojo registracija - ŽIŪRĖTI VĖLIAU')"></head>
+<head th:replace="fragments/dependencies :: head (title=#{page.title.user.register})"></head>
 <body>
 <div class="parent-container">
     <!--    MAIN MENU BANNER-->
     <header th:replace="fragments/layout :: header"></header>
     <main>
         <section th:insert="fragments/form :: user-register"
-                 class="post-compose-parent pb20 shadow"
+                 class="post-compose-parent pb20"
                  th:object="${newUser}">
 
         </section>
     </main>
+    <footer th:replace="fragments/layout :: footer"></footer>
 </div>
 </body>
 </html>

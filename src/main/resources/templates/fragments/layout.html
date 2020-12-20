@@ -21,54 +21,70 @@
 </th:block>
 
 <div th:fragment="menu-navigation" class="navigation">
-    <p class="navigation-description">Įvairaus turinio rekomendacijos. Didžiausias vėlesnės veiklos
+    <p class="navigation-description" th:text="#{header.description}">Įvairaus turinio rekomendacijos. Didžiausias vėlesnės veiklos
         planavimo portalas šalyje.</p>
     <div class="navigation-menu">
         <div class="navigation-menu-items-primary">
-            <a href="#">REKOMENDACIJOS</a>
-            <a href="#">APIE</a>
-            <a href="#">PAREMK</a>
+            <a href="#" th:text="#{header.menu.recommendations}">REKOMENDACIJOS</a>
+            <a href="#" th:text="#{header.menu.about}">APIE</a>
+            <a href="#" th:text="#{header.menu.donate}">PAREMK</a>
         </div>
         <div class="navigation-menu-items-secondary">
-            <a href="#">TINKLALAIDĖS</a>
-            <a href="#">FILMAI</a>
-            <a href="#">SERIALAI</a>
-            <a href="#">ŽAIDIMAI</a>
-            <a href="#">PROGRAMĖLĖS</a>
+            <a href="#" th:text="#{header.menu.podcasts}">TINKLALAIDĖS</a>
+            <a href="#" th:text="#{header.menu.movies}">FILMAI</a>
+            <a href="#" th:text="#{header.menu.series}">SERIALAI</a>
+            <a href="#" th:text="#{header.menu.games}">ŽAIDIMAI</a>
+            <a href="#" th:text="#{header.menu.apps}">PROGRAMĖLĖS</a>
         </div>
     </div>
 </div>
 
-<div th:fragment="menu-user" class="menu-user">
+<div th:fragment="menu-user"
+     class="menu-user"
+     >
     <img class="menu-user-image" sec:authorize="isAuthenticated()" th:src="${user.avatarUrl}" alt="User Avatar">
-    <div class="language-select">
-        <a href="#">LT</a>
+    <div class="language-select"
+         th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+        <a th:class="${#locale.toString()} == 'lt'  ? 'btn-lang-selected' : ''" th:href="@{${currentUrl}(lang='lt')}">LT</a>
         <span>|</span>
-        <a href="#">EN</a>
+        <a th:class="${#locale.toString()} == 'en'  ? 'btn-lang-selected' : ''" th:href="@{${currentUrl}(lang='en')}">EN</a>
     </div>
     <div class="user-profile-select">
-        <i class="far fa-user"></i>
-        <a sec:authorize="isAuthenticated()" th:text="${user.nickname}">explicito</a>
-        <p sec:authorize="!isAuthenticated()" th:text="'Neprisijungęs Svečias'">Neprisijungęs Svečias</p>
-
-        <!--        <a href="#" sec:authorize="!isAuthenticated()" th:text="${#authentication.nickname}">nickname: explicito</a>-->
+        <span class="far fa-user"></span>
+        <span class="username" sec:authorize="isAuthenticated()" th:text="${user.nickname}">nickname</span>
+        <span class="username" sec:authorize="!isAuthenticated()" th:text="#{user.anonymous}">Neprisijungęs Vartotojas</span>
     </div>
-    <form th:action="@{/sign-out}" method="POST">
-        <button type="submit" sec:authorize="isAuthenticated()">
-            <a class="logout">atsijungti</a>
-        </button>
-    </form>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" class="logout" href="/private/user">VARTOTOJAI</a>
-    <a sec:authorize="isAnonymous()" class="logout" href="/user/register">REGISTRUOTIS</a>
-    <a sec:authorize="isAnonymous()" class="logout" href="/sign-in">PRISIJUNGTI</a>
+    <div class="authenticate-select">
+        <form th:action="@{/sign-out}" method="POST">
+            <button class="btn-logout" type="submit" sec:authorize="isAuthenticated()" th:text="#{user.button.logout}"></button>
+        </form>
+        <a class="btn-user-menu" sec:authorize="isAnonymous()" href="/user/register" th:text="#{user.button.register}">Registruotis</a>
+        <a class="btn-user-menu" sec:authorize="isAnonymous()" href="/sign-in" th:text="#{user.button.login}">Prisijungti</a>
+    </div>
+    <a class="btn-user-menu" sec:authorize="hasRole('ROLE_ADMIN')" href="/private/user" th:text="#{user.list}">Vartotojai</a>
 </div>
 
 <div th:fragment="menu-quote" class="quote-container">
-    <p class="quote-text"><span class="highlight">"</span>Socializuotis nebemadinga, pavojinga, o dar ir
+    <p class="quote-text"><span class="highlight">"</span><span class="quote-text" th:text="#{header.quote.text}">Socializuotis nebemadinga, pavojinga, o dar ir
         draudžiama, atrask, ką
         turiningo nuveikti
-        užsidarius namie!<span class="highlight">"</span></p>
-    <p class="quote-author">- Intravertas Anonimas</p>
+        užsidarius namie!</span><span class="highlight">"</span></p>
+    <p class="quote-author" th:text="#{header.quote.author}">- Intravertas Anonimas</p>
 </div>
 
+<th:block th:fragment="page-heading (heading)">
+    <div class="page-name-container">
+        <div class="page-name">
+            <h3 th:text="${heading}">REGISTRUOTI VARTOTOJAI:</h3>
+        </div>
+    </div>
+</th:block>
 
+
+<th:block th:fragment="footer">
+<footer class="to-row-center">
+    <img class="btn-s side-margin-20" th:src="@{/img/ui/footer-logo.svg}" alt="Footer Logo">
+    <span class="navigation-description">© 2020 <a href="https://www.verbus.lt">Šarūnas Verbus</a>.&nbsp</span>
+    <span class="navigation-description" th:text="#{footer.copyright.text}">All rights reserved</span>
+</footer>
+</th:block>

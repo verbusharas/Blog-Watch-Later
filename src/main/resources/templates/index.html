@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+<head th:replace="fragments/dependencies :: head (title=#{page.title.index})"/>
 <body>
 <div class="parent-container">
     <!--/*    MAIN MENU BANNER */-->
     <header th:replace="fragments/layout :: header"></header>
     <main>
         <th:block th:if="${posts.empty}">
-            <p>Kol kas jokių rekomendacijų nėra :(</p>
+            <p th:text="#{post.feed.empty}">Kol kas jokių rekomendacijų neturime.</p>
         </th:block>
         <!--/*    RENDER ALL POSTS AS COLLAPSED */-->
         <th:block th:unless="${posts.empty}" th:each="post: ${posts}">
@@ -20,6 +20,7 @@
         </th:block>
         </th:block>
     </main>
+    <footer th:replace="fragments/layout :: footer"></footer>
 </div>
 </body>
 </html>

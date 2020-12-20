@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/dependencies :: head (title='Registruotų vartotojų sąrašas - ŽIŪRĖTI VĖLIAU')"/>
+<head th:replace="fragments/dependencies :: head (title=#{page.title.user.list})"></head>
     <body>
         <div class="parent-container">
             <!--    MAIN MENU BANNER-->
-                <header th:replace="fragments/layout :: header"/>
+            <header th:replace="fragments/layout :: header"></header>
+            <div th:replace="fragments/layout :: page-heading (heading=#{page.heading.user.list})"></div>
                 <main>
                     <table class="table shadow">
                         <thead>
                         <tr th:include="fragments/table :: user-header-row"></tr>
                         </thead>
-                        <tbody th:if="${users.empty}">Vartotojų nėra</tbody>
+                        <tbody th:if="${users.empty}" th:text="#{user.list.empty}">Vartotojų nėra</tbody>
                         <tbody th:if="${not users.empty}" th:each="user: ${users}">
                         <tr th:include="fragments/table :: user-entity-row" th:object="${user}"></tr>
                         </tbody>
                     </table>
                 </main>
+            <footer th:replace="fragments/layout :: footer"></footer>
         </div>
     </body>
 </html>

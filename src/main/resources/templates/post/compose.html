@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+<head th:replace="fragments/dependencies :: head (title=#{page.title.post.compose})"/>
 <body>
 <div class="parent-container">
     <!--/*    MAIN MENU BANNER */-->
@@ -21,6 +21,8 @@
 <!--        </th:block>-->
         </th:block>
     </main>
+    <footer th:replace="fragments/layout :: footer"></footer>
 </div>
+<script type="text/javascript" th:src="@{/js/new-or-edit-post.js}"></script>
 </body>
 </html>

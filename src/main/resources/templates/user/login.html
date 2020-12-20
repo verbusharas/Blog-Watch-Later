@@ -1,35 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/dependencies :: head (title='ŽIŪRĖTI VĖLIAU')"/>
+<head th:replace="fragments/dependencies :: head (title=#{page.title.user.login})"/>
 <body>
 <div class="parent-container">
     <header th:replace="fragments/layout :: header"/>
     <main>
-        <section class="post-compose-parent pb20 shadow">
-            <article class="post-compose-form w98">
-                <h3 class="info">VARTOTOJO PRISIJUNGIMAS:</h3>
-                <form th:action="@{/sign-in}" method="POST">
-                    <div class="to-row-center">
-                        <div class="form-column w35">
-                            <p class="label">EL. PAŠTAS:</p>
-                            <p class="label">SLAPTAŽODIS:</p>
-                        </div>
-                        <div class="form-column w50">
-                            <input class="input w80" type="text" id="tfUsername" name="user"/>
-                            <input class="input w80" type="password" id="tfPassword" name="pass"/>
-                        </div>
-                        <div class="to-row">
-                            <button class="btn-l" type="submit"><img class="btn-l-img" src="img/ui/btn-ok.svg" alt="">
-                            </button>
-                            <a th:href="@{/}" class="btn-l"><img class="btn-l-img" th:src="@{/img/ui/btn-cancel.svg}"
-                                                                 alt=""></a>
-                        </div>
-                    </div>
-                    <p th:if="${loginError}" class="error">Wrong username or password</p>
-                </form>
-            </article>
-        </section>
+        <section th:insert="fragments/form :: user-login" class="post-compose-parent pb20"></section>
     </main>
+    <footer th:replace="fragments/layout :: footer"></footer>
 </div>
 </body>
 </html>
