@@ -17,14 +17,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 
 @PasswordValueMatch.List({
         @PasswordValueMatch(
                 field = "password",
-                fieldMatch = "confirmPassword",
-                message = "Passwords do not match!"
+                fieldMatch = "confirmPassword"
         )
 })
 @AllArgsConstructor
