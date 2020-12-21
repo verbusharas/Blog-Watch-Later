@@ -28,4 +28,14 @@ public class IndexController extends DefaultController {
         return "index";
     }
 
+    @GetMapping({"/about"})
+    public String renderAbout() {
+        return "about";
+    }
+
+    @GetMapping({"/donate"})
+    public String renderDonate() {
+        return "donate";
+    }
+
 }

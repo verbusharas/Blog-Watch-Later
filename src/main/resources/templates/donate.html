@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/dependencies :: head (title=#{page.title.donate})"/>
+<body>
+<div class="parent-container">
+    <!--/*    MAIN MENU BANNER */-->
+    <header th:replace="fragments/layout :: header"></header>
+    <div th:replace="fragments/layout :: page-heading (heading=#{page.heading.donate})"></div>
+    <main>
+        <article class="text-container">
+            <span class="text" th:text="#{donate.text}">Jei norite paremti ar aptarti bendradarbiavimo galimybes, susisiekite su puslapio autoriumi:</span>
+            <a href="#" class="text-link-icon fab fa-linkedin fa-2x"></a>
+        </article>
+    </main>
+    <footer th:replace="fragments/layout :: footer"></footer>
+</div>
+</body>
+</html>
