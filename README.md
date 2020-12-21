@@ -18,11 +18,11 @@ This is an educational project for intermediate CodeAcademy exam on Java Spring 
 3. Make sure that `-Dspring.profiles.active=test` argument is passed to VM before launch.
 3. Launch the Spring Boot application
 4. Hibernate will seed the database with mock-up data. If Hibernate DDL exception is thrown on the initial launch, do the following steps (this only need to be done on the initial launch):
-  a) stop the application
-  b) in resources/db/data.sql - comment-out role_users table block
-  c) launch and stop the application again
-  d) uncomment the role_users block
-  e) launch the application
+ - [x] stop the application
+ - [x] in resources/db/data.sql - comment-out role_users table block
+ - [x] launch and stop the application again
+ - [x] uncomment the role_users block
+ - [x] launch the application
   
   ### APPLICATION DESCRIPTION AND FEATURES
   #### User roles
