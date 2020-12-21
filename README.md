@@ -1,5 +1,5 @@
 ![ZiuretiVeliau banner](/readme-media/ziureti-veliau-banner.png)
-## ŽIŪRĖTI VĖLIAU
+## ŽIŪRĖTI VĖLIAU - Blog web application
 
 ###### Developer: [Šarūnas Verbus](https://www.linkedin.com/in/sarunas-verbus/)    Client: [Codeacademy.lt](https://www.codeacademy.lt/)
 
