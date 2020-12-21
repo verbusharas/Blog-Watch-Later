@@ -1,5 +1,5 @@
 ![ZiuretiVeliau banner](/readme-media/ziureti-veliau-banner.png)
-## kuriTavoQuiz
+## ŽIŪRĖTI VĖLIAU
 
 ###### Developer: [Šarūnas Verbus](https://www.linkedin.com/in/sarunas-verbus/)    Client: [Codeacademy.lt](https://www.codeacademy.lt/)
 
