@@ -1,7 +1,6 @@
 package lt.verbus.svblog.model;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,6 +24,10 @@ public class Post {
     @NotBlank(message = "{post.title.not.blank}")
     private String title;
 
+    @NotBlank(message = "{post.url.not.blank}")
+    @URL(message = "{post.url.not.valid}")
+    private String link;
+
     @NotBlank(message = "{post.type.not.blank}")
     @Size(min=3, max = 30, message = "{post.type.size}")
     private String type;
@@ -40,6 +43,9 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Agree> agrees;
 
     @CreationTimestamp
     private LocalDateTime creationTimeStamp;

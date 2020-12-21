@@ -7,7 +7,7 @@
     <header th:replace="fragments/layout :: header"></header>
     <main>
         <!--/*    RENDER ACTIVATED POST AS EXPANDED */-->
-        <article class="post to-column shadow expanded">
+        <article class="post to-column shadow expanded" tabindex="0">
             <div class="post-content-section" th:insert="fragments/post :: body (state='expanded')"
                  th:object="${post}">
             </div>
@@ -23,5 +23,6 @@
     </main>
     <footer th:replace="fragments/layout :: footer"></footer>
 </div>
+<script type="text/javascript" th:src="@{/js/view-post.js}"></script>
 </body>
 </html>

@@ -10,6 +10,10 @@ main {
     display: flex;
   }
 
+  .post:focus{
+    outline: none;
+  }
+
   .post-content-section {
     background: linear-gradient(180deg, rgba(243,243,243,1) 50%, rgba(233,233,233,1) 100%);
     height: 300px;

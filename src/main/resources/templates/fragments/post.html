@@ -22,7 +22,8 @@
                    th:text="#{post.recommended.prefix} + ${#temporals.format(post.creationTimeStamp, 'yyyy-MM-dd HH:mm')}">
                     REKOMENDUOTA:
                     2020-12-04 17:15</p>
-                <h2 class="post-header-title" th:text="*{title}">TITLE OF RECOMMENDATION</h2>
+                <a th:href="*{link}" target="_blank"><h2 class="post-header-title" th:text="*{title}">TITLE OF
+                    RECOMMENDATION</h2></a>
                 <span class="post-header-tag" th:text="*{type}">TYPE TAG</span>
             </div>
             <!--/* BODY */-->
@@ -49,7 +50,7 @@
             <div class="post-footer-child">
                 <a href="#">
                     <img class="btn-s" src="/img/ui/btn-agree-inactive.svg" alt=""></a>
-                <span class="post-footer-text" th:text="#{post.button.likes}">6 PRITARIA</span>
+                <span class="post-footer-text" th:text="*{agrees.size} + ' ' + #{post.button.likes}">6 PRITARIA</span>
             </div>
             <div class="post-footer-child">
                 <a th:href="@{/post/comment/{id}(id=*{id})}" class="bt-show-comments">
@@ -106,16 +107,17 @@
             </p>
             <div class="to-row" sec:authorize="hasRole('ROLE_USER')" th:if="${user.id} == *{user.id}">
                 <a class="flex" th:href="'/post/comment/edit/' + *{id}"><img class="btn-xs"
-                                                                                  th:src="@{/img/ui/btn-edit.svg}"
-                                                                                  alt=""></a>
-                <a class="flex" th:href="'/post/comment/delete/' + *{id}"><img class="btn-xs"
-                                                                                    th:src="@{/img/ui/btn-delete.svg}"
-                                                                                    alt=""></a>
-            </div>
-            <div class="to-row" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a th:if="${user.id} == *{user.id}" class="flex" th:href="'/post/comment/edit/' + *{id}"><img class="btn-xs"
                                                                              th:src="@{/img/ui/btn-edit.svg}"
                                                                              alt=""></a>
+                <a class="flex" th:href="'/post/comment/delete/' + *{id}"><img class="btn-xs"
+                                                                               th:src="@{/img/ui/btn-delete.svg}"
+                                                                               alt=""></a>
+            </div>
+            <div class="to-row" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:if="${user.id} == *{user.id}" class="flex" th:href="'/post/comment/edit/' + *{id}"><img
+                        class="btn-xs"
+                        th:src="@{/img/ui/btn-edit.svg}"
+                        alt=""></a>
                 <a class="flex" th:href="'/post/comment/delete/' + *{id}"><img class="btn-xs"
                                                                                th:src="@{/img/ui/btn-delete.svg}"
                                                                                alt=""></a>

@@ -1,20 +1,20 @@
-INSERT INTO post (id, title, type, body, image_url, creation_time_stamp, update_time_stamp)
-VALUES (1, 'Whisper', 'App',
+INSERT INTO post (id, title, type, link, body, image_url, creation_time_stamp, update_time_stamp)
+VALUES (1, 'Whisper',  'App', 'https://apps.apple.com/us/app/whisper-share-express-meet/id506141837',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus vitae arcu eget ultrices. Donec cursus dignissim ante nec porttitor. Cras iaculis cursus mattis. Morbi et blandit quam. Phasellus tempus ante et commodo consectetur. Aenean elementum enim vel metus vulputate, et porttitor arcu iaculis. Suspendisse potenti. Nulla scelerisque ipsum eget felis hendrerit porta ac sed turpis. Cras sed lacus eu sapien varius mollis. Praesent et justo vestibulum, ullamcorper urna at, aliquet purus. Etiam sed vestibulum eros. Phasellus fermentum urna elit, nec consectetur orci gravida tristique.',
         'https://icdn6.digitaltrends.com/image/digitaltrends/whisper-secret-768x768.jpg',
         '2020-12-10 10:13',
         '2020-12-10 10:13'),
-       (2, 'Voxy', 'Youtube Channel',
+       (2, 'Vox', 'Youtube Channel', 'https://www.youtube.com/user/voxdotcom',
         'Pellentesque ultrices at sem quis sollicitudin. Cras fermentum placerat metus nec aliquet. Curabitur hendrerit varius auctor. Curabitur diam felis, egestas nec mi in, dignissim suscipit elit. Cras quam felis, commodo ac cursus vel, accumsan ut nunc. Aenean at sem augue. Praesent non ultrices velit. Quisque enim sem, consectetur vel libero sed, placerat venenatis lacus. Morbi eu urna eu justo sagittis tempus auctor vitae nibh. Maecenas hendrerit sit amet metus vel venenatis. Vivamus sit amet lorem ut nunc sagittis ultrices in in neque. Aenean nulla nisl, tincidunt sed fringilla eu, rhoncus vel neque. Nunc quis ex at nisi imperdiet accumsan eget nec mi. Suspendisse potenti. Phasellus enim leo, accumsan et metus convallis, molestie ultrices tortor.',
         'https://cdn.vox-cdn.com/thumbor/jzp6Qx96UVwgflZvRTBnapUAEM0=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/18980610/crossword_yellow__1_.jpg',
         '2020-12-11 14:03',
         '2020-12-11 14:03'),
-       (3, 'Love Death & Robots', 'Netflix Series',
+       (3, 'Love Death & Robots', 'Netflix Series', 'https://www.imdb.com/title/tt9561862/',
         'Ut vestibulum arcu et urna semper, vel fermentum nibh pulvinar. Quisque tincidunt leo lectus, eu luctus nisi ultricies sed. Mauris blandit, felis quis elementum convallis, lorem eros lacinia dui, et aliquet ipsum metus nec risus. Aenean lacinia lobortis mauris, vel tristique purus varius at. Nam vel magna imperdiet, fringilla arcu tincidunt, iaculis libero. Maecenas at hendrerit lorem. Nam sed fringilla arcu. Ut iaculis vehicula mollis. Mauris malesuada, dui tempus rutrum rutrum, sapien ipsum mattis lacus, ac laoreet est est a sem. Pellentesque euismod leo tellus, id dignissim diam volutpat a. Phasellus ultricies dignissim enim. Quisque enim eros, vestibulum at tincidunt eget, cursus non nibh. Pellentesque id libero ultricies, viverra tellus id, sodales erat.',
         'https://www.indiewire.com/wp-content/uploads/2019/02/Love-Death-and-Robots-Netflix-2.jpg',
         '2020-12-12 21:16',
         '2020-12-13 21:16'),
-       (4, 'Sandra And Woo', 'Webpage',
+       (4, 'Sandra And Woo', 'Webpage', 'http://www.sandraandwoo.com/',
         'In euismod, risus sed lacinia ornare, nunc nulla iaculis tellus, at venenatis ipsum dolor at turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed porta vehicula velit eget accumsan. Aliquam rhoncus est elit, non elementum libero accumsan sit amet. Vivamus et enim id metus condimentum fermentum id a dui. Pellentesque sed velit a augue sagittis lacinia sed sed ante. Vivamus augue dolor, viverra eget suscipit vestibulum, convallis eget odio. Phasellus interdum justo at consectetur porta. Ut blandit auctor arcu quis feugiat. Pellentesque eu mi et enim aliquam tincidunt. Suspendisse ultrices mauris quam, vel cursus metus iaculis ut. Vestibulum euismod in ex non commodo. Integer sit amet massa ultrices, bibendum justo id, dapibus erat',
         'http://www.sandraandwoo.com/comics/2016-01-04-0749-dating-strategy.png',
         '2020-12-14 18:47',
@@ -88,6 +88,18 @@ VALUES (1, 1, 2,
         'Best thing ever!',
         '2020-12-14 23:59',
         '2020-12-14 23:59');
+
+INSERT INTO agree (id, post_id, user_id)
+VALUES (1, 1, 1),
+       (2, 1, 4),
+       (3, 2, 1),
+       (4, 2, 2),
+       (5, 2, 3),
+       (6, 3, 1),
+       (7, 3, 2),
+       (8, 4, 1);
+
+
 
 -- INSERT INTO user_comments (comments_id, user_id)
 -- VALUES (1, 2),

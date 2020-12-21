@@ -5,11 +5,12 @@
     <div class="to-column">
         <div class="to-row">
             <article class="post-compose-form">
-                <h3 class="info" th:text="#{post.form.compose.heading}">NAUJA REKOMENDACIJA:</h3>
+                <h4 class="info" th:text="#{post.form.compose.heading}">NAUJA REKOMENDACIJA:</h4>
                 <form th:action="@{/post/compose}" method="POST" th:object="${newPost}">
                     <div class="to-row">
                         <div class="form-column w20">
                             <p class="label" th:text="#{post.form.compose.label.title}">PAVADINIMAS:</p>
+                            <p class="label" th:text="#{post.form.compose.label.link}">NUORODA:</p>
                             <p class="label" th:text="#{post.form.compose.label.type}">TIPAS:</p>
                             <p class="label" th:text="#{post.form.compose.label.image.url}">ILIUSTRACIJOS URL:</p>
                             <p class="label" th:text="#{post.form.compose.label.body}">APRAŠYMAS:</p>
@@ -18,11 +19,13 @@
                         <div class="form-column w80">
                             <input class="input w50" type="text" id="tfTitle"
                                    th:placeholder="#{post.form.compose.placeholder.title}" th:field="*{title}">
+                            <input class="input w50" type="text" id="tfLink" th:field="*{link}"
+                                   th:placeholder="#{post.form.compose.placeholder.link}"th:value="*{link}">
                             <input class="input w50" type="text" id="tfType"
                                    th:placeholder="#{post.form.compose.placeholder.type}" th:field="*{type}">
                             <input class="input w98" type="text" id="tfImageUrl"
                                    th:placeholder="#{post.form.compose.placeholder.image.url}" th:field="*{imageUrl}">
-                            <textarea class="input w98" type="text" id="tfBody" rows="10" th:field="*{body}"></textarea>
+                            <textarea class="input w98" type="text" id="tfBody" rows="8" th:field="*{body}"></textarea>
                         </div>
                         <div class="to-column-bottom">
                             <a href="/index" class="btn-l"><img class="btn-l-img"
@@ -33,6 +36,7 @@
                     </div>
                     <div class="errors" tabindex="0">
                         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error" tabindex="0">KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('link')}" th:errors="*{link}" class="error">KLAIDA: Pavadinimas negali būti tuščias!</span>
                         <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error" tabindex="0">KLAIDA: Tipas negali būti tuščias!</span>
                         <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="error"
                               tabindex="0">>KLAIDA: Pavadinimas negali būti tuščias!</span>
@@ -52,12 +56,13 @@
     <div class="to-column">
         <div class="to-row">
             <article class="post-compose-form">
-                <h3 class="info" th:text="#{post.form.edit.heading}">REKOMENDACIJOS REDAGAVIMAS:</h3>
+                <h4 class="info" th:text="#{post.form.edit.heading}">REKOMENDACIJOS REDAGAVIMAS:</h4>
                 <form th:action="@{/post/edit}" method="POST" th:object="${editablePost}">
                     <div class="to-row">
                         <div class="form-column w20">
                             <p class="label" th:text="#{post.form.compose.label.title}">PAVADINIMAS:</p>
                             <p class="label" th:text="#{post.form.compose.label.type}">TIPAS:</p>
+                            <p class="label" th:text="#{post.form.compose.label.link}">NUORODA:</p>
                             <p class="label" th:text="#{post.form.compose.label.image.url}">ILIUSTRACIJOS URL:</p>
                             <p class="label" th:text="#{post.form.compose.label.body}">APRAŠYMAS:</p>
                             <p id="remainingSymbols" class="navigation-description to-row-end side-margin-20">0/1000</p>
@@ -65,10 +70,11 @@
                         <div class="form-column w80">
                             <input type="hidden" id="tfId" th:field="*{id}" th:value="*{id}">
                             <input class="input w50" type="text" id="tfTitle" th:field="*{title}" th:value="*{title}">
+                            <input class="input w50" type="text" id="tfLink" th:field="*{link}" th:value="*{link}">
                             <input class="input w50" type="text" id="tfType" th:field="*{type}" th:value="*{type}">
                             <input class="input w98" type="text" id="tfImageUrl" th:field="*{imageUrl}"
                                    th:value="*{imageUrl}">
-                            <textarea class="input w98" type="text" id="tfBody" rows="10" th:field="*{body}"
+                            <textarea class="input w98" type="text" id="tfBody" rows="8" th:field="*{body}"
                                       th:text="*{body}"></textarea>
                         </div>
                         <div class="to-column-bottom">
@@ -80,6 +86,7 @@
                     </div>
                     <div class="errors">
                         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error">KLAIDA: Pavadinimas negali būti tuščias!</span>
+                        <span th:if="${#fields.hasErrors('link')}" th:errors="*{link}" class="error">KLAIDA: Pavadinimas negali būti tuščias!</span>
                         <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error">KLAIDA: Tipas negali būti tuščias!</span>
                         <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
                         <span th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="error">>KLAIDA: Pavadinimas negali būti tuščias!</span>
@@ -98,7 +105,7 @@
 <th:block th:fragment="comment-compose">
     <div>
         <div sec:authorize="isAnonymous()" class="new-comment-for-guest">
-            <p class="warning" th:text="#{comment.anonymous.user.warning}">Komentuoti gali tik registruoti
+            <p class="warning" th:text="#{comment.anonymous.user.warning}" tabindex="0">Komentuoti gali tik registruoti
                 vartotojai</p>
             <a class="btn-authenticate" th:href="@{/user/register}" th:text="#{user.button.register}">Registruotis</a>
             <a class="btn-authenticate" th:href="@{/sign-in}" th:text="#{user.button.login}">Prisijungti</a>
@@ -117,7 +124,7 @@
 
 <!--/*    USER REGISTER FORM */-->
 <article th:fragment="user-register" class="post-compose-form">
-    <h3 class="info" th:text="#{user.form.register.heading}">VARTOTOJO REGISTRACIJA:</h3>
+    <h4 class="info" th:text="#{user.form.register.heading}">VARTOTOJO REGISTRACIJA:</h4>
     <form th:action="@{/user/register}" method="POST" th:object="${newUser}">
         <div class="to-row-center">
             <div class="form-column w20">
@@ -157,7 +164,7 @@
 
 <!--/*   USER LOGIN FORM */-->
 <article th:fragment="user-login" class="post-compose-form w98">
-    <h3 class="info" th:text="#{user.form.login.heading}">VARTOTOJO PRISIJUNGIMAS:</h3>
+    <h4 class="info" th:text="#{user.form.login.heading}">VARTOTOJO PRISIJUNGIMAS:</h4>
     <form th:action="@{/sign-in}" method="POST">
         <div class="to-row-center">
             <div class="form-column w35">
